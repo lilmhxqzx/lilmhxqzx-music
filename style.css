@@ -8,9 +8,7 @@ body {
 /* HOME */
 
 .home {
-  width: 100%;
-  min-height: 100vh;   /* ❌ แทน height */
-  height: auto;
+  min-height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -19,8 +17,9 @@ body {
 
   text-align: center;
 
-  padding: 120px 20px 40px; /* กัน navbar + มือถือ */
-  overflow-x: hidden;
+  padding: 0 20px;
+
+  padding-top: 70px; /* กัน navbar อย่างเดียว */
 }
 
 .home h1 {

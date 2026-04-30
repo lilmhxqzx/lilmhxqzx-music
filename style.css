@@ -20,33 +20,27 @@ body {
     flex-direction:column;
 
     text-align:center;
-    padding-top:80px;
+    padding-top:20px;
 }
 
-.home h1{
+.home h1 {
+    font-family:'League Spartan', sans-serif;
 
-    font-family:'League Spartan',sans-serif;
+    font-size: clamp(28px, 6vw, 70px);
 
-    font-size:70px;
+    font-weight: 900;
+    line-height: 0.85;
 
-    font-weight:900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
 
-    line-height:0.85;
+    color: #f5f5f5;
+    text-align: center;
 
-    text-transform:uppercase;
+    margin: 20px;
 
-    letter-spacing:-4px;
-
-    color:#f5f5f5;
-
-    text-align:center;
-
-    margin:20;
-
-    text-shadow:
-    0 0 20px rgba(255,0,0,0.15);
-
-    animation:fadeText 8s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255,0,0,0.15);
+    animation: fadeText 8s ease-in-out infinite;
 }
 
 @keyframes fadeText{
@@ -368,6 +362,7 @@ body {
   -webkit-backdrop-filter: blur(14px);
 
   border-bottom: 1px solid rgba(255,255,255,0.08);
+  
 }
 
 .logo {

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilmhxqzx Music - MY MUSIC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0f0f 100%);
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Grid Pattern - Spotify inspired */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(29, 185, 84, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(29, 185, 84, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navbar - Spotify Style */
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(29, 185, 84, 0.15);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #1db954;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .navbar a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar a:hover {
+            color: #1db954;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1db954;
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        /* Music Container */
+        .music-container {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .music-container h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .music-subtitle {
+            color: #1db954;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Song Container */
+        .song-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Card - Spotify Style with Nu Metal touch */
+        .card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(29, 185, 84, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            aspect-ratio: 16 / 9;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(29, 185, 84, 0.1) 50%, transparent 70%);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .card:hover {
+            border-color: #1db954;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(29, 185, 84, 0.2);
+            background: rgba(29, 20, 20, 0.8);
+        }
+
+        .card iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Card animations - staggered */
+        .card {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.25s; }
+        .card:nth-child(5) { animation-delay: 0.3s; }
+        .card:nth-child(6) { animation-delay: 0.35s; }
+        .card:nth-child(7) { animation-delay: 0.4s; }
+        .card:nth-child(8) { animation-delay: 0.45s; }
+        .card:nth-child(9) { animation-delay: 0.5s; }
+        .card:nth-child(10) { animation-delay: 0.55s; }
+        .card:nth-child(11) { animation-delay: 0.6s; }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .song-container {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.2rem;
+                padding: 1rem;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+
+            .music-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .music-container h1 {
+                font-size: 2.2rem;
+            }
+
+            .music-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .song-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .card {
+                aspect-ratio: 16 / 9;
+            }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1db954;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1ed760;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">LILMHXQZX</div>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="music.html">MUSIC</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- MUSIC SECTION -->
+    <div class="music-container">
+        <h1>MY MUSIC</h1>
+        <p class="music-subtitle">💿 HEAVY TRACKS BELOW 💿</p>
+
+        <div class="song-container">
+<div class="card">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/-MolvDIRM0A?si=pSNJPwBFTILA2C55" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="card">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/k3IS58Sxxew?si=SPuB1ujzuBxfvo64" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="card">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/qeyxS-04Qfs?si=xyBVNYS1pqY-pMnS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/r3aWpZ_96Gs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/IVNdLVpDoxQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/7OoH3oJuxHM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/msT8RiNeYHU?si=xhzzkIqbWNnO2_2E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/KbNVyvVgX7g?si=sA5t9mjKyc91kn0Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/Ie-842xrlJs?si=jAikLBh63b5-VONi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/GBYp6vzO44k?si=e6q40cY5wvrdqHfu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/VB5AWU1AQ3c?si=vuV5UskWSKGF_r_c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/ElHQvMA-sU4?si=vjdFrSVQ4kedvurY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/GVEhKGArqCY?si=-__V49AQUViB45pW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+            <div class="card">
+                <iframe src="https://www.youtube.com/embed/LxtEvXgx8CM?si=AG8anjfSeHkYiqp7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

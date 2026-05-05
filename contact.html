@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilmhxqzx Music - CONTACT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0f0f 100%);
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Grid Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(29, 185, 84, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(29, 185, 84, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(29, 185, 84, 0.15);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #1db954;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .navbar a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar a:hover {
+            color: #1db954;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1db954;
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        /* Contact Container */
+        .contact-container {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .contact-header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .contact-header p {
+            color: #1db954;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Contact Content Grid */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%);
+            border: 1px solid rgba(29, 185, 84, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .contact-card:nth-child(1) { animation-delay: 0.1s; }
+        .contact-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) { animation-delay: 0.3s; }
+        .contact-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-card:hover {
+            border-color: #1db954;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 1) 0%, rgba(30, 30, 30, 1) 100%);
+            box-shadow: 0 0 30px rgba(29, 185, 84, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .contact-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h2 {
+            font-size: 1.3rem;
+            color: #1db954;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: #b3b3b3;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-card a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(29, 185, 84, 0.15);
+            border: 1px solid rgba(29, 185, 84, 0.5);
+            color: #1db954;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
+            background: rgba(29, 185, 84, 0.3);
+            border-color: #1db954;
+            color: #1ed760;
+            box-shadow: 0 0 15px rgba(29, 185, 84, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(29, 185, 84, 0.1) 0%, rgba(29, 185, 84, 0.05) 100%);
+            border: 1px solid rgba(29, 185, 84, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            animation: fadeIn 0.8s ease 0.5s both;
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            color: #1db954;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-section p {
+            color: #b3b3b3;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.2rem;
+                padding: 1rem;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+
+            .contact-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .contact-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-card {
+                padding: 1.5rem;
+            }
+
+            .cta-section {
+                padding: 1.5rem;
+            }
+
+            .contact-card a {
+                font-size: 0.85rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1db954;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1ed760;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">LILMHXQZX</div>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="music.html">MUSIC</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTACT SECTION -->
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1>GET IN TOUCH</h1>
+            <p>🎵 LET'S CONNECT 🎵</p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Facebook -->
+            <div class="contact-card">
+                <div class="contact-card-icon">📘</div>
+                <h2>Facebook</h2>
+                <p>Follow me for updates and behind-the-scenes content</p>
+                <a href="https://web.facebook.com/suparak.chouyphom" target="_blank">Visit Facebook</a>
+            </div>
+
+            <!-- Instagram -->
+            <div class="contact-card">
+                <div class="contact-card-icon">📷</div>
+                <h2>Instagram</h2>
+                <p>Check out my daily life and exclusive content</p>
+                <a href="https://www.instagram.com/lilmhxqzx" target="_blank">Visit Instagram</a>
+            </div>
+
+            <!-- YouTube -->
+            <div class="contact-card">
+                <div class="contact-card-icon">🎬</div>
+                <h2>YouTube</h2>
+                <p>Subscribe for music videos and vlogs</p>
+                <a href="https://www.youtube.com/@LilmhxqzxMusic" target="_blank">Visit YouTube</a>
+            </div>
+
+            <!-- TikTok -->
+            <div class="contact-card">
+                <div class="contact-card-icon">🎵</div>
+                <h2>TikTok</h2>
+                <p>Follow my journey on TikTok</p>
+                <a href="https://www.tiktok.com/@lilmhxqzx" target="_blank">Visit TikTok</a>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-card">
+                <div class="contact-card-icon">📧</div>
+                <h2>Email</h2>
+                <p>Send me a message directly</p>
+                <a href="mailto:suppalux66@gmail.com">suppalux66@gmail.com</a>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>✨ Let's Make Noise Together ✨</h2>
+            <p>Whether you want to collaborate, have questions, or just want to chat about music and life, I'm here. Don't be shy—reach out through any channel that feels right. Every message matters.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

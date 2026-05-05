@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilmhxqzx Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">LILMHXQZX</div>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="music.html">MUSIC</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <div class="home">
+        <h1>Welcome to <span class="highlight">my world</span></h1>
+        <p>THIS IS WHAT PAIN SOUNDS LIKE.</p>
+        <p>LOST IN MY OWN WORLD</p>
+        <button onclick="window.location.href='music.html'">LISTEN NOW</button>
+    </div>
+
+    <!-- Music Player Section -->
+    <div class="music-player-section">
+        <div class="music-player-container">
+            <div class="badge">🎵 NEW RELEASE</div>
+            <h2>Now Playing</h2>
+            <p class="subtitle">Listen to the latest track</p>
+
+            <!-- Album Cover -->
+            <div class="album-cover-wrapper">
+                <img id="albumCover" src="https://via.placeholder.com/300x300?text=Album+Cover" alt="Album Cover" class="album-cover">
+            </div>
+
+            <div class="player-wrapper">
+                <audio controls>
+                    <source src="เศษซาก (Remastered).wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+
+                <div class="controls">
+                    <button onclick="document.querySelector('audio').play()">▶ PLAY</button>
+                    <button onclick="document.querySelector('audio').pause()">⏸ PAUSE</button>
+                    <button onclick="document.querySelector('audio').currentTime = 0">↻ RESET</button>
+                </div>
+            </div>
+
+            <div class="info">
+                <p><span class="highlight-info">Fresh track</span> released today. This one hits different. Stream it now on all platforms.</p>
+            </div>
+
+            <!-- Album Cover Upload -->
+            <div class="upload-section">
+                <label for="albumInput" class="upload-label">📸 Change Album Cover</label>
+                <input type="file" id="albumInput" accept="image/*" class="upload-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="social-links">
+        <a href="https://web.facebook.com/suparak.chouyphom" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/lilmhxqzx" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@LilmhxqzxMusic" target="_blank">YouTube</a>
+        <a href="https://www.youtube.com/@LilmhxqzxMusic" target="_blank">TikTok</a>
+    </div>
+
+    <script>
+        // Album Cover Upload Functionality
+        const albumInput = document.getElementById('albumInput');
+        const albumCover = document.getElementById('albumCover');
+        const uploadLabel = document.querySelector('.upload-label');
+
+        uploadLabel.addEventListener('click', () => {
+            albumInput.click();
+        });
+
+        albumInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    albumCover.src = event.target.result;
+                    localStorage.setItem('albumCoverImage', event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Load saved album cover from localStorage on page load
+        window.addEventListener('load', () => {
+            const savedCover = localStorage.getItem('albumCoverImage');
+            if (savedCover) {
+                albumCover.src = savedCover;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilmhxqzx Music - ABOUT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0a0f0f 100%);
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Grid Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(29, 185, 84, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(29, 185, 84, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 1.2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(29, 185, 84, 0.15);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #1db954;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .navbar a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar a:hover {
+            color: #1db954;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1db954;
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        /* About Container */
+        .about-container {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .about-header p {
+            color: #1db954;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* About Content */
+        .about-content {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-section {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.6) 0%, rgba(30, 30, 30, 0.6) 100%);
+            border: 1px solid rgba(29, 185, 84, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .about-section:nth-child(1) { animation-delay: 0.1s; }
+        .about-section:nth-child(2) { animation-delay: 0.2s; }
+        .about-section:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-section h2 {
+            font-size: 1.5rem;
+            color: #1db954;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            color: #b3b3b3;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Quote Section */
+        .quotes-section {
+            background: linear-gradient(135deg, rgba(29, 185, 84, 0.1) 0%, rgba(29, 185, 84, 0.05) 100%);
+            border: 1px solid rgba(29, 185, 84, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            animation: fadeIn 0.8s ease 0.4s both;
+        }
+
+        .quotes-section h2 {
+            font-size: 1.8rem;
+            color: #1db954;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .quote-card {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 3px solid #1db954;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .quote-card:hover {
+            background: rgba(0, 0, 0, 0.6);
+            border-left-color: #1ed760;
+            transform: translateY(-5px);
+        }
+
+        .quote-card p {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .quote-author {
+            color: #1db954;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.2rem;
+                padding: 1rem;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+
+            .about-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .about-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .quote-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quotes-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1db954;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1ed760;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">LILMHXQZX</div>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="music.html">MUSIC</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- ABOUT SECTION -->
+    <div class="about-container">
+        <div class="about-header">
+            <h1>ABOUT ME</h1>
+            <p>🎵 LOST IN MY OWN WORLD 🎵</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-section">
+                <h2>🎤 THE STORY</h2>
+                <p>I'm Lilmhxqzx, a musician who channels pain into sound. My music is a reflection of real emotions, real struggles, and the rawness of what it means to be lost in your own world. Every track tells a story of heartbreak, resilience, and the endless search for meaning.</p>
+                <p>This is not just music—it's a confession. It's therapy. It's survival.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>🎸 THE SOUND</h2>
+                <p>Nu metal is my voice. It's heavy, it's honest, and it doesn't apologize. Combining aggressive guitars with introspective lyrics, I create music that hits hard but heals deeper. Every riff, every beat, every word is a weapon against the silence.</p>
+                <p>This is what pain sounds like.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>💔 THE MISSION</h2>
+                <p>To make people feel less alone in their darkness. To show that vulnerability is strength. To prove that broken hearts can create beautiful things. Music is my language when words fail, and I want to be your voice when yours breaks.</p>
+            </div>
+        </div>
+
+        <!-- QUOTES SECTION -->
+        <div class="quotes-section">
+            <h2>WORDS THAT ECHO</h2>
+            <div class="quote-grid">
+                <div class="quote-card">
+                    <p>"เจ็บกว่าการมองไม่เห็น คือมองเห็นแต่ต้องทำเป็นมองไม่เห็น"</p>
+                    <div class="quote-author">— ความจริง</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"ความรักไม่ได้หายไป แค่ย้ายจากหัวใจ มาอยู่ในความทรงจำ"</p>
+                    <div class="quote-author">— ทรงจำ</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"บางครั้งก็ยอมเจ็บ แค่เพราะอยากอยู่ใกล้ๆ"</p>
+                    <div class="quote-author">— ยินดี</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"เมื่อหัวใจคุณแตกสลาย สมองคุณจะเริ่มทำงาน"</p>
+                    <div class="quote-author">— การรู้ตัว</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"เศร้าแค่ไหนเธอก็ไม่กลับมา เศร้าได้แต่อย่านาน"</p>
+                    <div class="quote-author">— ความจำเป็น</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"กาลเวลาไม่ได้รักษาทุกสิ่ง แต่การยอมรับความจริงจะรักษาทุกอย่าง"</p>
+                    <div class="quote-author">— การยิ่งใหญ่</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"It's better to be alone than to feel lonely with you"</p>
+                    <div class="quote-author">— Truth</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"Heartbreaks are just love stories that didn't end well"</p>
+                    <div class="quote-author">— Honesty</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"When you lose the one you love, you lose someone. When you lose yourself, you lose everything"</p>
+                    <div class="quote-author">— Wisdom</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

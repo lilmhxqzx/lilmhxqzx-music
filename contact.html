@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilmhxqzx Music - CONTACT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Contact Container */
+        .contact-container {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .contact-header h1 {
+            font-size: clamp(48px, 8vw, 100px);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'Bebas Neue', sans-serif;
+            line-height: 0.9;
+        }
+
+        .contact-header p {
+            color: #e8000d;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Contact Content Grid */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background: linear-gradient(135deg, rgba(24, 24, 24, 1) 0%, rgba(24, 24, 24, 1) 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .contact-card:nth-child(1) { animation-delay: 0.1s; }
+        .contact-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) { animation-delay: 0.3s; }
+        .contact-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-card:hover {
+            border-color: #e8000d;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 1) 0%, rgba(30, 30, 30, 1) 100%);
+            box-shadow: 0 0 30px rgba(232, 0, 13, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .contact-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h2 {
+            font-size: 1.3rem;
+            color: #e8000d;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: #b3b3b3;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-card a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(232, 0, 13, 0.15);
+            border: 1px solid rgba(232, 0, 13, 0.5);
+            color: #e8000d;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
+            background: rgba(232, 0, 13, 0.3);
+            border-color: #e8000d;
+            color: #ff1f2d;
+            box-shadow: 0 0 15px rgba(232, 0, 13, 0.3);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(232, 0, 13, 0.1) 0%, rgba(232, 0, 13, 0.05) 100%);
+            border: 1px solid rgba(232, 0, 13, 0.3);
+            border-radius: 10px;
+            padding: 2.5rem;
+            text-align: center;
+            animation: fadeIn 0.8s ease 0.5s both;
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            color: #e8000d;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-section p {
+            color: #b3b3b3;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.2rem;
+                padding: 1rem;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+
+            .contact-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .contact-header h1 {
+                font-size: 48px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-card {
+                padding: 1.5rem;
+            }
+
+            .cta-section {
+                padding: 1.5rem;
+            }
+
+            .contact-card a {
+                font-size: 0.85rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e8000d;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff1f2d;
+        }
+        /* Theme alignment overrides */
+        body {
+            background: #0a0a0a;
+        }
+
+        .navbar {
+            height: 64px;
+            padding: 0 40px;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .navbar ul {
+            gap: 8px;
+        }
+
+        .navbar a {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .navbar a::after {
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            background: #e8000d;
+            transition: transform 0.2s;
+            border-radius: 2px;
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 20px;
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .contact-container {
+            max-width: 1180px;
+            padding: 64px 60px 80px;
+        }
+
+        .contact-header h1,
+        .cta-section h2,
+        .contact-card h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 4px;
+            line-height: 0.9;
+        }
+
+        .contact-header h1 {
+            font-size: clamp(48px, 8vw, 100px);
+        }
+
+        .contact-header p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #e8000d;
+        }
+
+        .contact-card,
+        .cta-section {
+            background: #181818;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+        }
+
+        .contact-card-icon {
+            font-family: 'Share Tech Mono', monospace;
+            color: #e8000d;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .contact-card h2 {
+            font-size: 34px;
+            color: #fff;
+        }
+
+        .contact-card p,
+        .cta-section p {
+            font-size: 18px;
+            color: #b3b3b3;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(34px, 5vw, 58px);
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: auto;
+                padding: 16px 20px;
+            }
+
+            .navbar ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0;
+            }
+
+            .navbar a {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .contact-container {
+                padding: 48px 20px 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">LILMHXQZX</a>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="music.html">MUSIC</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="contact.html" class="active">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTACT SECTION -->
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1>GET IN TOUCH</h1>
+            <p>LET'S CONNECT</p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Facebook -->
+            <div class="contact-card">
+              
+                <h2>Facebook</h2>
+                <p>Follow me for updates and behind-the-scenes content</p>
+                <a href="https://web.facebook.com/suparak.chouyphom" target="_blank">Visit Facebook</a>
+            </div>
+
+            <!-- Instagram -->
+            <div class="contact-card">
+        
+                <h2>Instagram</h2>
+                <p>Check out my daily life and exclusive content</p>
+                <a href="https://www.instagram.com/lilmhxqzx" target="_blank">Visit Instagram</a>
+            </div>
+
+            <!-- YouTube -->
+            <div class="contact-card">
+               
+                <h2>YouTube</h2>
+                <p>Subscribe for music videos and vlogs</p>
+                <a href="https://www.youtube.com/@LilmhxqzxMusic" target="_blank">Visit YouTube</a>
+            </div>
+
+            <!-- TikTok -->
+            <div class="contact-card">
+                
+                <h2>TikTok</h2>
+                <p>Follow my journey on TikTok</p>
+                <a href="https://www.tiktok.com/@lilmhxqzx" target="_blank">Visit TikTok</a>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-card">
+                
+                <h2>Email</h2>
+                <p>Send me a message directly</p>
+                <a href="mailto:suppalux66@gmail.com">suppalux66@gmail.com</a>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Let's Make Noise Together</h2>
+            <p>Whether you want to collaborate, have questions, or just want to chat about music and life, I'm here. Reach out through any channel that feels right. Every message matters.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

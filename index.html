@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilmhxqzx Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
+    <script src="data.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">LILMHXQZX</a>
+        <ul>
+            <li><a href="index.html" class="active">HOME</a></li>
+            <li><a href="music.html">MUSIC</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <main class="home">
+        <div class="hero-copy">
+            <div class="eyebrow">INDEPENDENT NU METAL</div>
+            <h1>LILMHXQZX</h1>
+            <p>I make noise for people who feel too much. Heavy songs, raw words, and every scar turned louder.</p>
+            <div class="hero-actions">
+                <a class="primary-action" href="music.html">LISTEN NOW</a>
+                <a class="secondary-action" href="contact.html">BOOK / CONTACT</a>
+            </div>
+        </div>
+
+        <div class="hero-meta" aria-label="Artist highlights">
+            <div>
+                <span>Latest</span>
+                <strong>New Release</strong>
+            </div>
+            <div>
+                <span>Tracks</span>
+                <strong id="meta-track-count">0 Videos</strong>
+            </div>
+            <div>
+                <span>Sound</span>
+                <strong>Heavy / Honest</strong>
+            </div>
+        </div>
+    </main>
+
+    <!-- Music Player Section -->
+    <div class="music-player-section">
+        <div class="music-player-container">
+            <div class="badge">NEW RELEASE</div>
+            <h2 id="latest-title">Latest Drop</h2>
+            <p class="subtitle" id="latest-subtitle">Play the newest track here</p>
+
+            <!-- Album Cover -->
+            <div class="album-cover-wrapper">
+                <img id="albumCover" src="cover.jpg.jpg" alt="Album Cover" class="album-cover">
+            </div>
+
+            <div class="player-wrapper">
+                <audio id="main-audio">
+                    <source id="audio-source" src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+
+                <div class="controls">
+                    <button onclick="document.querySelector('audio').play()">PLAY</button>
+                    <button onclick="document.querySelector('audio').pause()">PAUSE</button>
+                    <button onclick="document.querySelector('audio').currentTime = 0">RESET</button>
+                </div>
+            </div>
+
+            <div class="info">
+                <p id="latest-desc"><span class="highlight-info">Fresh track</span> for late nights, loud rooms, and everything you could not say out loud.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-links">
+        <a href="https://web.facebook.com/suparak.chouyphom" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/lilmhxqzx" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@LilmhxqzxMusic" target="_blank">YouTube</a>
+        <a href="https://www.youtube.com/@LilmhxqzxMusic" target="_blank">TikTok</a>
+    </div>
+
+    <script>
+        // ข้อมูล trackList ถูกโหลดมาจากไฟล์ data.js แล้ว
+
+        function initHomePage() {
+            const latestTrack = trackList[0];
+            const metaCount = document.getElementById('meta-track-count');
+            const latestTitle = document.getElementById('latest-title');
+            const latestDesc = document.getElementById('latest-desc');
+            const audioPlayer = document.getElementById('main-audio');
+            const audioSource = document.getElementById('audio-source');
+
+            // 1. อัปเดตจำนวนวิดีโอในส่วน Hero
+            if (metaCount) {
+                metaCount.textContent = `${trackList.length} Videos`;
+            }
+
+            // 2. อัปเดตข้อมูลเพลงล่าสุด (Latest Drop)
+            if (latestTrack) {
+                latestTitle.textContent = latestTrack.title;
+                
+                if (latestTrack.description) {
+                    latestDesc.innerHTML = `<span class="highlight-info">Latest release:</span> ${latestTrack.description}`;
+                }
+
+                // 3. เปลี่ยนไฟล์เพลงในเครื่องเล่น (ถ้ามีข้อมูล audioSrc)
+                if (latestTrack.audioSrc) {
+                    audioSource.src = latestTrack.audioSrc;
+                    audioPlayer.load(); // รีโหลดเพื่อให้เครื่องเล่นจำไฟล์ใหม่
+                }
+            }
+        }
+
+        // เรียกใช้งานเมื่อโหลดหน้า
+        window.addEventListener('DOMContentLoaded', initHomePage);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilmhxqzx Music - ABOUT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* About Container */
+        .about-container {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-header h1 {
+            font-size: clamp(48px, 8vw, 100px);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: 'Bebas Neue', sans-serif;
+            line-height: 0.9;
+        }
+
+        .about-header p {
+            color: #e8000d;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* About Content */
+        .about-content {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-section {
+            background: linear-gradient(135deg, rgba(24, 24, 24, 1) 0%, rgba(24, 24, 24, 1) 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .about-section:nth-child(1) { animation-delay: 0.1s; }
+        .about-section:nth-child(2) { animation-delay: 0.2s; }
+        .about-section:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-section h2 {
+            font-size: 1.5rem;
+            color: #e8000d;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            color: #b3b3b3;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Quote Section */
+        .quotes-section {
+            background: linear-gradient(135deg, rgba(232, 0, 13, 0.1) 0%, rgba(232, 0, 13, 0.05) 100%);
+            border: 1px solid rgba(232, 0, 13, 0.3);
+            border-radius: 10px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            animation: fadeIn 0.8s ease 0.4s both;
+        }
+
+        .quotes-section h2 {
+            font-size: 1.8rem;
+            color: #e8000d;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .quote-card {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 3px solid #e8000d;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .quote-card:hover {
+            background: rgba(0, 0, 0, 0.6);
+            border-left-color: #ff1f2d;
+            transform: translateY(-5px);
+        }
+
+        .quote-card p {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .quote-author {
+            color: #e8000d;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.2rem;
+                padding: 1rem;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
+
+            .about-container {
+                padding: 1.5rem 1rem;
+            }
+
+            .about-header h1 {
+                font-size: 48px;
+            }
+
+            .quote-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quotes-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e8000d;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff1f2d;
+        }
+        /* Theme alignment overrides */
+        body {
+            background: #0a0a0a;
+        }
+
+        .navbar {
+            height: 64px;
+            padding: 0 40px;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .navbar ul {
+            gap: 8px;
+        }
+
+        .navbar a {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .navbar a::after {
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            background: #e8000d;
+            transition: transform 0.2s;
+            border-radius: 2px;
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 20px;
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .about-container {
+            max-width: 1180px;
+            padding: 64px 60px 80px;
+        }
+
+        .about-header h1,
+        .quotes-section h2,
+        .about-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 4px;
+            line-height: 0.9;
+        }
+
+        .about-header h1 {
+            font-size: clamp(48px, 8vw, 100px);
+        }
+
+        .about-header p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #e8000d;
+        }
+
+        .about-section,
+        .quotes-section,
+        .quote-card {
+            background: #181818;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+        }
+
+        .about-section h2 {
+            font-size: 34px;
+            color: #fff;
+        }
+
+        .about-section p,
+        .quote-card p {
+            font-size: 18px;
+            color: #b3b3b3;
+        }
+
+        .quotes-section h2 {
+            font-size: clamp(34px, 5vw, 58px);
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: auto;
+                padding: 16px 20px;
+            }
+
+            .navbar ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0;
+            }
+
+            .navbar a {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .about-container {
+                padding: 48px 20px 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">LILMHXQZX</a>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="music.html">MUSIC</a></li>
+            <li><a href="about.html" class="active">ABOUT</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <!-- ABOUT SECTION -->
+    <div class="about-container">
+        <div class="about-header">
+            <h1>ABOUT ME</h1>
+            <p>LOST IN MY OWN WORLD</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-section">
+                <h2>THE STORY</h2>
+                <p>I'm Lilmhxqzx, a musician who channels pain into sound. My music is a reflection of real emotions, real struggles, and the rawness of what it means to be lost in your own world. Every track tells a story of heartbreak, resilience, and the endless search for meaning.</p>
+                <p>This is not just music. It's a confession. It's therapy. It's survival.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>THE SOUND</h2>
+                <p>Nu metal is my voice. It's heavy, it's honest, and it doesn't apologize. Combining aggressive guitars with introspective lyrics, I create music that hits hard but heals deeper. Every riff, every beat, every word is a weapon against the silence.</p>
+                <p>This is what pain sounds like.</p>
+            </div>
+
+            <div class="about-section">
+                <h2>THE MISSION</h2>
+                <p>To make people feel less alone in their darkness. To show that vulnerability is strength. To prove that broken hearts can create beautiful things. Music is my language when words fail, and I want to be your voice when yours breaks.</p>
+            </div>
+        </div>
+
+        <!-- QUOTES SECTION -->
+        <div class="quotes-section">
+            <h2>WORDS THAT ECHO</h2>
+            <div class="quote-grid">
+                <div class="quote-card">
+                    <p>"Some scars become songs because silence was too heavy to carry."</p>
+                    <div class="quote-author">- Survival</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"Pain does not disappear. It changes shape until you can finally name it."</p>
+                    <div class="quote-author">- Healing</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"The loudest tracks often come from the quietest rooms."</p>
+                    <div class="quote-author">- Truth</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"When the heart breaks, the sound gets honest."</p>
+                    <div class="quote-author">- Honesty</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"You can feel lost and still be building a way out."</p>
+                    <div class="quote-author">- Resilience</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"Every heavy moment has a rhythm. I just turn it up."</p>
+                    <div class="quote-author">- Noise</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"It's better to be alone than to feel lonely with you"</p>
+                    <div class="quote-author">- Truth</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"Heartbreaks are just love stories that didn't end well"</p>
+                    <div class="quote-author">- Honesty</div>
+                </div>
+
+                <div class="quote-card">
+                    <p>"When you lose the one you love, you lose someone. When you lose yourself, you lose everything"</p>
+                    <div class="quote-author">- Wisdom</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

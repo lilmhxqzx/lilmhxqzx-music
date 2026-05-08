@@ -1,4 +1,10 @@
 const trackList = [
+    { 
+        id: "AwN6Nyn1uzE", 
+        title: "Can’t erase", 
+        audioSrc: "cant.mp3", 
+        description: "I tried to erase the pain, but it already became part of me." 
+    },
      { 
     id: "_cKMsbvbI_8", 
         title: "invisible-scars", 

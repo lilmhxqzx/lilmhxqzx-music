@@ -1,9 +1,10 @@
 const trackList = [
-    { 
+     { 
         id: "J62yLb7I93M", 
         title: "THE GAP OF TIME", 
         audioSrc: "gaptime.mp3", 
-        description: "Sometimes the distance isn’t people — it’s time." 
+        description: "Sometimes the distance isn’t people — it’s time.",
+        mode: "Honest"
     },
     { 
         id: "AwN6Nyn1uzE", 
@@ -11,12 +12,12 @@ const trackList = [
         audioSrc: "cant.mp3", 
         description: "I tried to erase the pain, but it already became part of me." 
     },
-     { 
-    id: "_cKMsbvbI_8", 
+    { 
+        id: "_cKMsbvbI_8", 
         title: "invisible-scars", 
         audioSrc: "invisible.mp3", 
         description: "Invisible scars hurt the most because no one knows they exist" 
-            },
+    },
     { 
         id: "-MolvDIRM0A",
         title: "Broken Pieces", 

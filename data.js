@@ -19,14 +19,12 @@ const trackList = [
         id: "AwN6Nyn1uzE", 
         title: "Can’t erase", 
         audioSrc: "cant.mp3", 
-        coverSrc: "cover.jpg",
         description: "I tried to erase the pain, but it already became part of me." 
     },
     { 
         id: "_cKMsbvbI_8", 
         title: "invisible-scars", 
         audioSrc: "invisible.mp3", 
-        coverSrc: "cover.jpg",
         description: "Invisible scars hurt the most because no one knows they exist" 
     },
     { 

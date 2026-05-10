@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -57,7 +57,7 @@
 
             <!-- Album Cover -->
             <div class="album-cover-wrapper">
-                <img id="albumCover" src="cover.jpg.jpg" alt="Album Cover" class="album-cover">
+                <img id="albumCover" src="cover.jpg" alt="Album Cover" class="album-cover">
             </div>
 
             <div class="player-wrapper">
@@ -94,6 +94,7 @@
             const metaCount = document.getElementById('meta-track-count');
             const latestTitle = document.getElementById('latest-title');
             const latestDesc = document.getElementById('latest-desc');
+            const albumCover = document.getElementById('albumCover');
             const audioPlayer = document.getElementById('main-audio');
             const audioSource = document.getElementById('audio-source');
 
@@ -108,6 +109,11 @@
                 
                 if (latestTrack.description) {
                     latestDesc.innerHTML = `<span class="highlight-info">Latest release:</span> ${latestTrack.description}`;
+                }
+
+                // 3. เปลี่ยนรูปหน้าปก (ถ้ามีข้อมูล coverSrc)
+                if (latestTrack.coverSrc) {
+                    albumCover.src = latestTrack.coverSrc;
                 }
 
                 // 3. เปลี่ยนไฟล์เพลงในเครื่องเล่น (ถ้ามีข้อมูล audioSrc)

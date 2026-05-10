@@ -1,21 +1,32 @@
 const trackList = [
      { 
+        id: "HrliSzKuR3U", 
+        title: "CITY LIGHT", 
+        audioSrc: "city.mp3", 
+        coverSrc: "city.png",
+        description: "Under the city lights, lonely hearts learn how to smile in silence.",
+        mode: "SYNTHWAVE"
+    },
+     { 
         id: "J62yLb7I93M", 
         title: "THE GAP OF TIME", 
         audioSrc: "gaptime.mp3", 
+        coverSrc: "cover.jpg",
         description: "Sometimes the distance isn’t people — it’s time.",
-        mode: "Honest"
+       
     },
     { 
         id: "AwN6Nyn1uzE", 
         title: "Can’t erase", 
         audioSrc: "cant.mp3", 
+        coverSrc: "cover.jpg",
         description: "I tried to erase the pain, but it already became part of me." 
     },
     { 
         id: "_cKMsbvbI_8", 
         title: "invisible-scars", 
         audioSrc: "invisible.mp3", 
+        coverSrc: "cover.jpg",
         description: "Invisible scars hurt the most because no one knows they exist" 
     },
     { 

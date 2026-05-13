@@ -1,4 +1,20 @@
 const trackList = [
+       { 
+        id: "-F1CQElXnL4", 
+        title: "Dead on Arrival", 
+        audioSrc: "dead.mp3", 
+        coverSrc: "dead.jpg",
+        description: "Some hearts stop beating long before they die.",
+        mode: "Heavy"
+    },
+    { 
+        id: "iPXjLpzKjOQ", 
+        title: "เสียงสะท้อน", 
+        audioSrc: "city.mp3", 
+        coverSrc: "city.png",
+        description: "Under the city lights, lonely hearts learn how to smile in silence.",
+        mode: "SYNTHWAVE"
+    },
      { 
         id: "jbPcinPGVmA", 
         title: "CITY LIGHT", 

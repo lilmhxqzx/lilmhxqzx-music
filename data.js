@@ -1,4 +1,12 @@
 const trackList = [
+         { 
+        id: "grA354PUuqE", 
+        title: "Parallel", 
+        audioSrc: "dead.mp3", 
+        coverSrc: "cover.jpg",
+        description: "Parallel lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
        { 
         id: "-F1CQElXnL4", 
         title: "Dead on Arrival", 

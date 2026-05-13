@@ -273,6 +273,73 @@
             box-shadow: 0 0 12px var(--red-glow);
         }
 
+        /* Search Styles */
+        .search-container {
+            margin-top: 24px;
+            max-width: 400px;
+            animation: fadeUp 0.7s 0.3s ease both;
+        }
+
+        #search-input {
+            width: 100%;
+            background: var(--deep);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 20px;
+            color: var(--white);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 14px;
+            letter-spacing: 1px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #search-input:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 15px var(--red-glow);
+        }
+
+        /* Pagination Controls */
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .pagination-button {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--grey);
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+        }
+
+        .pagination-button:hover:not(:disabled) {
+            border-color: var(--red);
+            color: var(--white);
+            background: rgba(232, 0, 13, 0.1);
+        }
+
+        .pagination-button.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+            cursor: default;
+        }
+
+        .pagination-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .navbar { padding: 0 20px; }
@@ -307,6 +374,9 @@
         <h1>MY MUSIC</h1>
         <p class="subtitle">HEAVY TRACKS BELOW</p>
         <div class="track-count">TRACKS <span id="total-tracks">0</span></div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="SEARCH TRACKS BY TITLE...">
+        </div>
     </div>
 
     <div class="music-container">
@@ -324,6 +394,11 @@
         <div class="song-container" id="catalog-root">
             <!-- Catalog tracks will be injected here -->
         </div>
+
+        <div id="pagination-controls" class="pagination-controls">
+            <!-- Pagination buttons will be injected here -->
+        </div>
+
     </div>
 
     <div class="footer-bar">
@@ -339,21 +414,33 @@
     <script src="data.js"></script>
     <script>
         // ข้อมูล trackList ถูกโหลดมาจากไฟล์ data.js แล้ว
+        
+        let currentPage = 1;
+        const itemsPerPage = 10;
+        let filteredTracks = [...trackList]; // เก็บรายการเพลงที่ผ่านการกรองแล้ว
 
-        function renderMusic() {
+        function renderMusic(page = 1) {
+            currentPage = page;
             const featuredRoot = document.getElementById('featured-root');
             const catalogRoot = document.getElementById('catalog-root');
             const totalTracksEl = document.getElementById('total-tracks');
             const remainingCountEl = document.getElementById('remaining-count');
+            const paginationControls = document.getElementById('pagination-controls');
 
-            if (!trackList.length) return;
+            if (!filteredTracks.length) {
+                featuredRoot.innerHTML = '';
+                catalogRoot.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--dim); font-family: \'Share Tech Mono\';">NO TRACKS FOUND MATCHING YOUR SEARCH.</div>';
+                totalTracksEl.textContent = '0';
+                remainingCountEl.textContent = '0 results';
+                paginationControls.innerHTML = '';
+                return;
+            }
 
-            // Update Counts
-            totalTracksEl.textContent = trackList.length;
-            remainingCountEl.textContent = `${trackList.length - 1} more videos below`;
+            // Update Total Count (ตามผลการค้นหา)
+            totalTracksEl.textContent = filteredTracks.length;
 
-            // 1. Render Featured Track (เพลงแรกสุดใน array)
-            const featured = trackList[0];
+            // 1. Render Featured Track (เพลงแรกจากรายการที่กรองแล้ว)
+            const featured = filteredTracks[0];
             featuredRoot.innerHTML = `
                 <section class="featured-track" aria-label="Featured track">
                     <div class="featured-video">
@@ -383,9 +470,19 @@
             `;
 
             // 2. Render Catalog (เพลงที่เหลือ)
-            const catalogHtml = trackList.slice(1).map((track, index) => {
-                // คำนวณลำดับ Track (เริ่มที่ 02 เพราะ 01 คือ Featured)
-                const trackNumber = (index + 2).toString().padStart(2, '0');
+            const catalogTracks = filteredTracks.slice(1); 
+            const totalCatalogTracks = catalogTracks.length;
+            const totalPages = Math.ceil(totalCatalogTracks / itemsPerPage);
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, totalCatalogTracks); // Ensure endIndex doesn't exceed array length
+
+            const paginatedTracks = catalogTracks.slice(startIndex, endIndex);
+
+            const catalogHtml = paginatedTracks.map((track, index) => {
+                // Calculate track number relative to the *entire* catalog, not just the current page
+                const actualTrackNumber = startIndex + index + 2; // +1 for 0-indexing, +1 for featured track
+                const trackNumber = actualTrackNumber.toString().padStart(2, '0');
                 
                 return `
                     <div class="card" style="animation-delay: ${0.05 * (index + 1)}s">
@@ -402,10 +499,57 @@
             }).join('');
 
             catalogRoot.innerHTML = catalogHtml;
+
+            // Update remaining count
+            if (totalCatalogTracks > 0) {
+                remainingCountEl.textContent = `Showing ${startIndex + 1}-${endIndex} of ${totalCatalogTracks} tracks`;
+            } else {
+                remainingCountEl.textContent = 'No more tracks.';
+            }
+
+
+            // 3. Render Pagination Controls
+            if (paginationControls) {
+                paginationControls.innerHTML = ''; // Clear previous buttons
+
+                if (totalPages > 1) {
+                    const prevButton = document.createElement('button');
+                    prevButton.textContent = 'Previous';
+                    prevButton.classList.add('pagination-button');
+                    if (currentPage === 1) prevButton.disabled = true;
+                    prevButton.onclick = () => { renderMusic(currentPage - 1); window.scrollTo(0, 0); };
+                    paginationControls.appendChild(prevButton);
+
+                    for (let i = 1; i <= totalPages; i++) {
+                        const pageButton = document.createElement('button');
+                        pageButton.textContent = i;
+                        pageButton.classList.add('pagination-button');
+                        if (i === currentPage) pageButton.classList.add('active');
+                        pageButton.onclick = () => { renderMusic(i); window.scrollTo(0, 0); };
+                        paginationControls.appendChild(pageButton);
+                    }
+
+                    const nextButton = document.createElement('button');
+                    nextButton.textContent = 'Next';
+                    nextButton.classList.add('pagination-button');
+                    if (currentPage === totalPages) nextButton.disabled = true;
+                    nextButton.onclick = () => { renderMusic(currentPage + 1); window.scrollTo(0, 0); };
+                    paginationControls.appendChild(nextButton);
+                }
+            }
         }
 
+        // ระบบการค้นหา
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            filteredTracks = trackList.filter(track => 
+                track.title.toLowerCase().includes(query)
+            );
+            renderMusic(1); // กลับไปหน้า 1 เมื่อมีการค้นหาใหม่
+        });
+
         // เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเว็บ
-        document.addEventListener('DOMContentLoaded', renderMusic);
+        document.addEventListener('DOMContentLoaded', () => renderMusic(1));
     </script>
 
 </body>

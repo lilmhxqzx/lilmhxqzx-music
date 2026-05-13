@@ -1,9 +1,9 @@
 const trackList = [
-      { 
+     { 
         id: "grA354PUuqE", 
         title: "Parallel", 
         audioSrc: "parallel.mp3", 
-        coverSrc: "cover.jpg",
+        coverSrc: "dead.jpg",
         description: "Parallel lines never meet, yet they move in the same direction.",
         mode: "Heavy"
     },

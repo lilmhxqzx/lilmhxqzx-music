@@ -1,4 +1,22 @@
 const trackList = [
+       { 
+        id: "YlsL4-KPwxR8g7Of", 
+        title: "ZERO FS.", 
+        audioSrc: "parallel.mp3", 
+        coverSrc: "dead.jpg",
+        description: "ZERO FS lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
+
+
+       { 
+        id: "9rO0GBnimVryIFUe", 
+        title: "Stop time here.", 
+        audioSrc: "parallel.mp3", 
+        coverSrc: "dead.jpg",
+        description: "Last lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
       { 
         id: "Fhoj49oklQS6tTFK", 
         title: "LAST", 

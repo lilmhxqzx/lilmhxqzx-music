@@ -1,4 +1,15 @@
 const trackList = [
+      { 
+        id: "Fhoj49oklQS6tTFK", 
+        title: "LAST", 
+        audioSrc: "parallel.mp3", 
+        coverSrc: "dead.jpg",
+        description: "Last lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
+
+
+     
      { 
         id: "grA354PUuqE", 
         title: "Parallel", 

@@ -275,6 +275,7 @@
 
         /* Search Styles */
         .search-container {
+            position: relative;
             margin-top: 24px;
             max-width: 400px;
             animation: fadeUp 0.7s 0.3s ease both;
@@ -285,7 +286,7 @@
             background: var(--deep);
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 14px 20px;
+            padding: 14px 45px 14px 20px;
             color: var(--white);
             font-family: 'Share Tech Mono', monospace;
             font-size: 14px;
@@ -298,6 +299,22 @@
             border-color: var(--red);
             box-shadow: 0 0 15px var(--red-glow);
         }
+
+        .clear-search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--dim);
+            font-size: 22px;
+            cursor: pointer;
+            display: none;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .clear-search-btn:hover { color: var(--red); }
 
         /* Pagination Controls */
         .pagination-controls {
@@ -376,6 +393,7 @@
         <div class="track-count">TRACKS <span id="total-tracks">0</span></div>
         <div class="search-container">
             <input type="text" id="search-input" placeholder="SEARCH TRACKS BY TITLE...">
+            <button id="clear-search" class="clear-search-btn" title="Clear search">&times;</button>
         </div>
     </div>
 
@@ -540,12 +558,27 @@
         }
 
         // ระบบการค้นหา
-        document.getElementById('search-input').addEventListener('input', (e) => {
+        const searchInput = document.getElementById('search-input');
+        const clearBtn = document.getElementById('clear-search');
+
+        searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
+            
+            // แสดง/ซ่อนปุ่มล้างการค้นหา
+            clearBtn.style.display = query.length > 0 ? 'block' : 'none';
+
             filteredTracks = trackList.filter(track => 
                 track.title.toLowerCase().includes(query)
             );
             renderMusic(1); // กลับไปหน้า 1 เมื่อมีการค้นหาใหม่
+        });
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            filteredTracks = [...trackList];
+            renderMusic(1);
+            searchInput.focus();
         });
 
         // เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเว็บ

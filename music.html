@@ -316,6 +316,33 @@
         }
         .clear-search-btn:hover { color: var(--red); }
 
+        /* Filter Styles */
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            animation: fadeUp 0.7s 0.35s ease both;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--dim);
+            padding: 6px 16px;
+            border-radius: 500px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover { border-color: var(--grey); color: var(--grey); }
+        .filter-btn.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+        }
+
         /* Pagination Controls */
         .pagination-controls {
             display: flex;
@@ -395,6 +422,12 @@
             <input type="text" id="search-input" placeholder="SEARCH TRACKS BY TITLE...">
             <button id="clear-search" class="clear-search-btn" type="button" title="Clear search" aria-label="Clear search">&times;</button>
         </div>
+        <div class="filter-container" id="filter-root">
+            <button class="filter-btn active" data-mode="ALL">ALL</button>
+            <button class="filter-btn" data-mode="HEAVY">HEAVY</button>
+            <button class="filter-btn" data-mode="MELODIC">MELODIC</button>
+            <button class="filter-btn" data-mode="DARK">DARK</button>
+        </div>
     </div>
 
     <div class="music-container">
@@ -437,28 +470,7 @@
         const itemsPerPage = 10;
         let filteredTracks = [...trackList]; // เก็บรายการเพลงที่ผ่านการกรองแล้ว
 
-        // ฟังก์ชันล้างพื้นที่แสดงผลเมื่อไม่พบข้อมูล
-        function renderNoResults() {
-            const featuredRoot = document.getElementById('featured-root');
-            const catalogRoot = document.getElementById('catalog-root');
-            const totalTracksEl = document.getElementById('total-tracks');
-            const remainingCountEl = document.getElementById('remaining-count');
-            const paginationControls = document.getElementById('pagination-controls');
-
-            featuredRoot.innerHTML = '';
-            catalogRoot.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 80px 20px; border: 1px dashed var(--border); border-radius: 10px; background: rgba(255,255,255,0.02);">
-                    <div style="color: var(--red); font-size: 24px; margin-bottom: 10px; font-family: 'Bebas Neue'; letter-spacing: 2px;">NO MATCHES FOUND</div>
-                    <div style="color: var(--dim); font-family: 'Share Tech Mono';">TRY SEARCHING FOR A DIFFERENT TITLE.</div>
-                </div>`;
-            totalTracksEl.textContent = '0';
-            remainingCountEl.textContent = '0 results';
-            paginationControls.innerHTML = '';
-        }
-
         function renderMusic(page = 1) {
-            if (!trackList || trackList.length === 0) return;
-
             currentPage = page;
             const featuredRoot = document.getElementById('featured-root');
             const catalogRoot = document.getElementById('catalog-root');
@@ -467,7 +479,11 @@
             const paginationControls = document.getElementById('pagination-controls');
 
             if (!filteredTracks.length) {
-                renderNoResults();
+                featuredRoot.innerHTML = '';
+                catalogRoot.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--dim); font-family: \'Share Tech Mono\';">NO TRACKS FOUND MATCHING YOUR SEARCH.</div>';
+                totalTracksEl.textContent = '0';
+                remainingCountEl.textContent = '0 results';
+                paginationControls.innerHTML = '';
                 return;
             }
 
@@ -537,7 +553,7 @@
 
             // Update remaining count
             if (totalCatalogTracks > 0) {
-                remainingCountEl.textContent = `SHOWING ${startIndex + 1}-${endIndex} OF ${totalCatalogTracks} ADDITIONAL TRACKS`;
+                remainingCountEl.textContent = `Showing ${startIndex + 1}-${endIndex} of ${totalCatalogTracks} tracks`;
             } else {
                 remainingCountEl.textContent = 'No more tracks.';
             }

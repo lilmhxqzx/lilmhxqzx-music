@@ -2,10 +2,10 @@ const trackList = [
             { 
         id: "yx-StsAAx-4", 
         title: "Friend zone.", 
-        audioSrc: "no.mp3", 
-        coverSrc: "dead.jpg",
+        audioSrc: "zone.mp3", 
+        coverSrc: "cover.jpg",
         description: "Friend zone lines never meet, yet they move in the same direction.",
-        mode: "Heavy"
+        mode: "Cute"
     },
 
             { 

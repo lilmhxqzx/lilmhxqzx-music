@@ -1,4 +1,31 @@
 const trackList = [
+            { 
+        id: "yx-StsAAx-4", 
+        title: "Friend zone.", 
+        audioSrc: "no.mp3", 
+        coverSrc: "dead.jpg",
+        description: "Friend zone lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
+
+            { 
+        id: "8fEflNZf0Qg", 
+        title: "เกมที่เธอสร้าง", 
+        audioSrc: "no.mp3", 
+        coverSrc: "dead.jpg",
+        description: "ZERO FS lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
+
+            { 
+        id: "mDUQKDMQlYA", 
+        title: "สาดโคลน (The Blacken.)", 
+        audioSrc: "no.mp3", 
+        coverSrc: "dead.jpg",
+        description: "ZERO FS lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
+
        { 
         id: "rDrdLb7EtHg", 
         title: "ZERO FS.", 

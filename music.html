@@ -370,6 +370,25 @@
             color: var(--white);
         }
 
+        .share-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--grey);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+        .share-btn:hover {
+            border-color: var(--red);
+            color: var(--white);
+            background: rgba(232, 0, 13, 0.1);
+        }
+
         /* Pagination Controls */
         .pagination-controls {
             display: flex;
@@ -503,6 +522,24 @@
         let currentMode = 'ALL';
         let filteredTracks = [...trackList]; // เก็บรายการเพลงที่ผ่านการกรองแล้ว
 
+        async function shareTrack(title, id) {
+            const url = `https://www.youtube.com/watch?v=${id}`;
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: `Lilmhxqzx - ${title}`,
+                        text: `Check out this track by Lilmhxqzx: ${title}`,
+                        url: url
+                    });
+                } catch (err) {
+                    console.log('Share cancelled or failed');
+                }
+            } else {
+                navigator.clipboard.writeText(url);
+                alert('Link copied to clipboard!');
+            }
+        }
+
         function renderMusic(page = 1) {
             currentPage = page;
             const featuredRoot = document.getElementById('featured-root');
@@ -538,6 +575,7 @@
                             <div class="featured-kicker">LATEST RELEASE</div>
                             <h2>${featured.title}</h2>
                             <p>${featured.description || 'Check out my newest sound.'}</p>
+                            <button class="share-btn" style="margin-top: 15px; align-self: flex-start;" onclick="shareTrack('${featured.title.replace(/'/g, "\\'")}', '${featured.id}')">SHARE TRACK</button>
                         </div>
                         <div class="featured-stats">
                             <div>
@@ -575,8 +613,11 @@
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen></iframe>
                         <div class="track-label">
-                            <span>TRACK ${trackNumber}</span>
-                            <strong>${track.title}</strong>
+                            <div style="display: flex; flex-direction: column; gap: 2px;">
+                                <span>TRACK ${trackNumber}</span>
+                                <strong>${track.title}</strong>
+                            </div>
+                            <button class="share-btn" onclick="shareTrack('${track.title.replace(/'/g, "\\'")}', '${track.id}')">SHARE</button>
                         </div>
                     </div>
                 `;

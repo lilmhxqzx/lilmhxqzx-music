@@ -522,6 +522,17 @@
         let currentMode = 'ALL';
         let filteredTracks = [...trackList]; // เก็บรายการเพลงที่ผ่านการกรองแล้ว
 
+        // ฟังก์ชันสร้าง UI เมื่อไม่พบผลลัพธ์
+        function getEmptyStateHTML() {
+            return `
+                <div style="grid-column: 1/-1; text-align: center; padding: 100px 20px; border: 1px dashed var(--border); border-radius: 10px; background: rgba(255,255,255,0.02); animation: fadeUp 0.5s ease;">
+                    <div style="font-size: 64px; margin-bottom: 20px; opacity: 0.2;">🚫</div>
+                    <h3 style="font-family: 'Bebas Neue'; font-size: 32px; color: var(--red); letter-spacing: 2px;">NO MATCHES FOUND</h3>
+                    <p style="color: var(--dim); font-family: 'Share Tech Mono'; margin-top: 10px; text-transform: uppercase;">The frequency you are looking for does not exist in our database.</p>
+                </div>
+            `;
+        }
+
         async function shareTrack(title, id) {
             const url = `https://www.youtube.com/watch?v=${id}`;
             if (navigator.share) {
@@ -550,7 +561,7 @@
 
             if (!filteredTracks.length) {
                 featuredRoot.innerHTML = '';
-                catalogRoot.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--dim); font-family: \'Share Tech Mono\';">NO TRACKS FOUND MATCHING YOUR SEARCH.</div>';
+                catalogRoot.innerHTML = getEmptyStateHTML();
                 totalTracksEl.textContent = '0';
                 remainingCountEl.textContent = '0 results';
                 paginationControls.innerHTML = '';
@@ -641,8 +652,8 @@
                     const prevButton = document.createElement('button');
                     prevButton.textContent = 'Previous';
                     prevButton.classList.add('pagination-button');
-                    if (currentPage === 1) prevButton.disabled = true;
-                    prevButton.onclick = () => { renderMusic(currentPage - 1); window.scrollTo(0, 0); };
+                    prevButton.disabled = (currentPage === 1);
+                    prevButton.onclick = () => { renderMusic(currentPage - 1); document.querySelector('.section-heading').scrollIntoView({ behavior: 'smooth' }); };
                     paginationControls.appendChild(prevButton);
 
                     for (let i = 1; i <= totalPages; i++) {
@@ -650,7 +661,10 @@
                         pageButton.textContent = i;
                         pageButton.classList.add('pagination-button');
                         if (i === currentPage) pageButton.classList.add('active');
-                        pageButton.onclick = () => { renderMusic(i); window.scrollTo(0, 0); };
+                        pageButton.onclick = () => { 
+                            renderMusic(i); 
+                            document.querySelector('.section-heading').scrollIntoView({ behavior: 'smooth' });
+                        };
                         paginationControls.appendChild(pageButton);
                     }
 
@@ -658,7 +672,7 @@
                     nextButton.textContent = 'Next';
                     nextButton.classList.add('pagination-button');
                     if (currentPage === totalPages) nextButton.disabled = true;
-                    nextButton.onclick = () => { renderMusic(currentPage + 1); window.scrollTo(0, 0); };
+                    nextButton.onclick = () => { renderMusic(currentPage + 1); document.querySelector('.section-heading').scrollIntoView({ behavior: 'smooth' }); };
                     paginationControls.appendChild(nextButton);
                 }
             }

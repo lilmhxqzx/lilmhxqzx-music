@@ -22,6 +22,32 @@
             line-height: 1;
             user-select: none;
         }
+
+        /* Loading Spinner Styles */
+        .loader-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .loader-overlay.active { opacity: 1; pointer-events: all; }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--red);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
         .track-count {
             display: inline-flex;
             align-items: center;
@@ -48,6 +74,7 @@
             padding: 48px 60px 80px;
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
         }
 
         .featured-track {
@@ -431,6 +458,11 @@
     </div>
 
     <div class="music-container">
+        <!-- Loading Spinner -->
+        <div id="music-loader" class="loader-overlay">
+            <div class="spinner"></div>
+        </div>
+
         <!-- Featured Track will be injected here -->
         <div id="featured-root"></div>
 
@@ -468,6 +500,7 @@
         
         let currentPage = 1;
         const itemsPerPage = 10;
+        let currentMode = 'ALL';
         let filteredTracks = [...trackList]; // เก็บรายการเพลงที่ผ่านการกรองแล้ว
 
         function renderMusic(page = 1) {
@@ -593,25 +626,48 @@
         // ระบบการค้นหา
         const searchInput = document.getElementById('search-input');
         const clearBtn = document.getElementById('clear-search');
+        const musicLoader = document.getElementById('music-loader');
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            
-            // แสดง/ซ่อนปุ่มล้างการค้นหา
-            clearBtn.style.display = query.length > 0 ? 'block' : 'none';
+        function performSearchAndFilter() {
+            // แสดง Loader
+            musicLoader.classList.add('active');
 
-            filteredTracks = trackList.filter(track => 
-                track.title.toLowerCase().includes(query)
-            );
-            renderMusic(1); // กลับไปหน้า 1 เมื่อมีการค้นหาใหม่
-        });
+            // ใช้ timeout เล็กน้อยเพื่อให้เห็น spinner และจำลองการประมวลผล
+            setTimeout(() => {
+                const query = searchInput.value.toLowerCase().trim();
+                clearBtn.style.display = query.length > 0 ? 'block' : 'none';
+
+                filteredTracks = trackList.filter(track => {
+                    const matchesSearch = track.title.toLowerCase().includes(query);
+                    const matchesMode = currentMode === 'ALL' || (track.mode && track.mode.toUpperCase() === currentMode);
+                    return matchesSearch && matchesMode;
+                });
+
+                renderMusic(1);
+                
+                // ซ่อน Loader
+                musicLoader.classList.remove('active');
+            }, 400);
+        }
+
+        searchInput.addEventListener('input', performSearchAndFilter);
 
         clearBtn.addEventListener('click', () => {
             searchInput.value = '';
-            clearBtn.style.display = 'none';
-            filteredTracks = [...trackList];
-            renderMusic(1);
+            performSearchAndFilter();
             searchInput.focus();
+        });
+
+        // ระบบการกรองตามโหมด (Category Filter)
+        document.getElementById('filter-root').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                // อัปเดตสถานะปุ่ม Active
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+
+                currentMode = e.target.getAttribute('data-mode');
+                performSearchAndFilter();
+            }
         });
 
         // เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเว็บ

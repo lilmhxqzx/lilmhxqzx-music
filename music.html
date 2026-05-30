@@ -393,7 +393,7 @@
         <div class="track-count">TRACKS <span id="total-tracks">0</span></div>
         <div class="search-container">
             <input type="text" id="search-input" placeholder="SEARCH TRACKS BY TITLE...">
-            <button id="clear-search" class="clear-search-btn" title="Clear search">&times;</button>
+            <button id="clear-search" class="clear-search-btn" type="button" title="Clear search" aria-label="Clear search">&times;</button>
         </div>
     </div>
 
@@ -437,7 +437,28 @@
         const itemsPerPage = 10;
         let filteredTracks = [...trackList]; // เก็บรายการเพลงที่ผ่านการกรองแล้ว
 
+        // ฟังก์ชันล้างพื้นที่แสดงผลเมื่อไม่พบข้อมูล
+        function renderNoResults() {
+            const featuredRoot = document.getElementById('featured-root');
+            const catalogRoot = document.getElementById('catalog-root');
+            const totalTracksEl = document.getElementById('total-tracks');
+            const remainingCountEl = document.getElementById('remaining-count');
+            const paginationControls = document.getElementById('pagination-controls');
+
+            featuredRoot.innerHTML = '';
+            catalogRoot.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 80px 20px; border: 1px dashed var(--border); border-radius: 10px; background: rgba(255,255,255,0.02);">
+                    <div style="color: var(--red); font-size: 24px; margin-bottom: 10px; font-family: 'Bebas Neue'; letter-spacing: 2px;">NO MATCHES FOUND</div>
+                    <div style="color: var(--dim); font-family: 'Share Tech Mono';">TRY SEARCHING FOR A DIFFERENT TITLE.</div>
+                </div>`;
+            totalTracksEl.textContent = '0';
+            remainingCountEl.textContent = '0 results';
+            paginationControls.innerHTML = '';
+        }
+
         function renderMusic(page = 1) {
+            if (!trackList || trackList.length === 0) return;
+
             currentPage = page;
             const featuredRoot = document.getElementById('featured-root');
             const catalogRoot = document.getElementById('catalog-root');
@@ -446,11 +467,7 @@
             const paginationControls = document.getElementById('pagination-controls');
 
             if (!filteredTracks.length) {
-                featuredRoot.innerHTML = '';
-                catalogRoot.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--dim); font-family: \'Share Tech Mono\';">NO TRACKS FOUND MATCHING YOUR SEARCH.</div>';
-                totalTracksEl.textContent = '0';
-                remainingCountEl.textContent = '0 results';
-                paginationControls.innerHTML = '';
+                renderNoResults();
                 return;
             }
 
@@ -520,7 +537,7 @@
 
             // Update remaining count
             if (totalCatalogTracks > 0) {
-                remainingCountEl.textContent = `Showing ${startIndex + 1}-${endIndex} of ${totalCatalogTracks} tracks`;
+                remainingCountEl.textContent = `SHOWING ${startIndex + 1}-${endIndex} OF ${totalCatalogTracks} ADDITIONAL TRACKS`;
             } else {
                 remainingCountEl.textContent = 'No more tracks.';
             }

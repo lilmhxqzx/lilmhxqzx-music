@@ -188,6 +188,24 @@
             color: #fff;
         }
 
+        #ascii-visualizer {
+            color: #e8000d;
+            font-size: 24px;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            margin-left: 15px;
+            height: 32px;
+        }
+
+        #reset-btn {
+            color: #555;
+        }
+
+        #reset-btn:hover {
+            text-shadow: 0 0 8px #666;
+            color: #999;
+        }
+
         .term-btn span { color: #555; margin: 0 5px; }
 
         /* Screen Glitch Spike */
@@ -198,6 +216,19 @@
             0% { filter: invert(0.5) hue-rotate(90deg); transform: translateX(5px) skewX(2deg); }
             50% { filter: contrast(5); transform: translateX(-5px) skewX(-2deg); }
             100% { filter: none; transform: none; }
+        }
+
+        /* Text Flicker Animation for Player Buttons */
+        @keyframes text-flicker {
+            0% { opacity: 0.1; }
+            10% { opacity: 1; }
+            20% { opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+        .is-glitching {
+            animation: text-flicker 0.4s steps(4);
         }
     </style>
 </head>
@@ -259,7 +290,10 @@
                     </div>
                     <div class="track-info-terminal">
                         <span class="status-line">> STATUS: DEPLOYED_LATEST</span>
-                        <h2 id="latest-title">LOAD_ERROR</h2>
+                        <div style="display: flex; align-items: center;">
+                            <h2 id="latest-title">LOAD_ERROR</h2>
+                            <span id="ascii-visualizer"></span>
+                        </div>
                         <div id="latest-desc" style="font-size: 12px; color: #666; line-height: 1.4;">...</div>
                     </div>
                 </div>
@@ -280,7 +314,7 @@
 
                 <div class="terminal-actions">
                     <button class="term-btn" onclick="togglePlay()" id="play-btn"><span>[</span> PLAY <span>]</span></button>
-                    <button class="term-btn" onclick="resetAudio()"><span>[</span> RESET <span>]</span></button>
+                    <button class="term-btn" onclick="resetAudio()" id="reset-btn"><span>[</span> RESET <span>]</span></button>
                 </div>
             </div>
         </div>
@@ -391,15 +425,52 @@
         const timeDisplay = document.getElementById('time-display');
         const playerStatus = document.getElementById('player-status');
 
+        let visualizerInterval;
+        function startVisualizer() {
+            const viz = document.getElementById('ascii-visualizer');
+            const chars = [" ", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
+            visualizerInterval = setInterval(() => {
+                let output = "";
+                for (let i = 0; i < 6; i++) {
+                    output += chars[Math.floor(Math.random() * chars.length)];
+                }
+                viz.textContent = output;
+            }, 100);
+        }
+
+        let statusTypeInterval;
+        function setStatusText(text) {
+            clearInterval(statusTypeInterval);
+            playerStatus.textContent = '';
+            let i = 0;
+            statusTypeInterval = setInterval(() => {
+                if (i < text.length) {
+                    playerStatus.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(statusTypeInterval);
+                }
+            }, 50); // ความเร็วในการพิมพ์ (มิลลิวินาที)
+        }
+
         function togglePlay() {
+            // เพิ่ม class กระพริบและลบออกเมื่ออนิเมชั่นจบ
+            playBtn.classList.add('is-glitching');
+            setTimeout(() => {
+                playBtn.classList.remove('is-glitching');
+            }, 400);
+
             if (mainAudio.paused) {
                 mainAudio.play();
                 playBtn.innerHTML = "<span>[</span> PAUSE <span>]</span>";
-                playerStatus.textContent = "STREAMING...";
+                setStatusText("STREAMING...");
+                startVisualizer();
             } else {
                 mainAudio.pause();
                 playBtn.innerHTML = "<span>[</span> PLAY <span>]</span>";
-                playerStatus.textContent = "PAUSED";
+                setStatusText("PAUSED");
+                clearInterval(visualizerInterval);
+                document.getElementById('ascii-visualizer').textContent = "";
             }
         }
 
@@ -407,7 +478,9 @@
             mainAudio.pause();
             mainAudio.currentTime = 0;
             playBtn.innerHTML = "<span>[</span> PLAY <span>]</span>";
-            playerStatus.textContent = "READY";
+            setStatusText("READY");
+            clearInterval(visualizerInterval);
+            document.getElementById('ascii-visualizer').textContent = "";
         }
 
         function formatTime(seconds) {
@@ -427,7 +500,9 @@
 
         mainAudio.addEventListener('ended', () => {
             playBtn.innerHTML = "<span>[</span> PLAY <span>]</span>";
-            playerStatus.textContent = "COMPLETED";
+            setStatusText("COMPLETED");
+            clearInterval(visualizerInterval);
+            document.getElementById('ascii-visualizer').textContent = "";
         });
 
         function initHomePage() {
@@ -440,6 +515,8 @@
             const audioSource = document.getElementById('audio-source');
 
             updateVisitorStats();
+            // เริ่มต้นด้วยเอฟเฟกต์พิมพ์คำว่า READY
+            setStatusText("READY");
 
             // 1. อัปเดตจำนวนวิดีโอในส่วน Hero
             if (metaCount) {

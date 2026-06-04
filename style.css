@@ -39,12 +39,8 @@ html { scroll-behavior: smooth; }
     border-radius: 3px;
 }
 
-html {
-    background: var(--black); /* ย้ายสีพื้นหลังหลักมาไว้ที่ html */
-}
-
 body {
-    background: transparent; /* ปล่อย body ให้ใสเพื่อให้เห็นพื้นหลัง z-index: -1 */
+    background: var(--black);
     color: var(--white);
     font-family: 'Barlow Condensed', sans-serif;
     min-height: 100vh;
@@ -751,19 +747,12 @@ audio {
 /* Dynamic Background for Music Page */
 .music-page-bg-overlay {
     position: fixed;
-    inset: 0;
-    z-index: -10;
-    background-image: url('music-bg.png'); /* แก้ไขนามสกุลไฟล์ให้ตรงกับ music-bg.png */
-    background-image: url('music-bg2.png'); /* เปลี่ยนเป็นรูป music-bg2.png */
-    background-image: url('music-bg3.png'); /* เปลี่ยนเป็นรูป music-bg3.png */
-    background-image: url('music-bg5.jpg'); /* เปลี่ยนเป็นรูป music-bg5.jpg */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* ขยับขึ้นมาให้อยู่เหนือพื้นหลังของ body แต่ยังอยู่หลังเนื้อหา */
-    background-color: var(--black); /* ใช้เป็นสีพื้นฐานกรณีรูปไม่โหลด */
-    background-image: url('music-bg5.png');
+    z-index: 0; /* ปรับให้อยู่ระนาบเดียวกับ body */
+    background-image: url('music-bg5.jpg'); /* แก้ไขเป็น .jpg ให้ตรงกับไฟล์จริง */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

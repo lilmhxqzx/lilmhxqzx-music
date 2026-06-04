@@ -49,29 +49,6 @@
         .glitch:hover::before { animation-duration: 0.2s; }
         .glitch:hover::after { animation-duration: 0.3s; }
 
-        /* CRT Scanlines & Vignette Overlay */
-        body::after {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: 
-                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 9998;
-            background-size: 100% 3px, 3px 100%;
-            pointer-events: none;
-        }
-        body::before {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
-            z-index: 9999;
-            pointer-events: none;
-        }
-
         /* --- INDUSTRIAL TERMINAL PLAYER --- */
         .music-player-container.terminal-style {
             background: #050505;
@@ -243,9 +220,12 @@
 </head>
 
 <body>
+    <div id="page-loader"></div>
+
     <nav class="navbar">
         <a href="index.html" class="logo">LILMHXQZX</a>
-        <ul>
+        <button class="nav-toggle" id="nav-toggle">☰</button>
+        <ul id="nav-menu">
             <li><a href="index.html" class="active">HOME</a></li>
             <li><a href="music.html">MUSIC</a></li>
             <li><a href="about.html">ABOUT</a></li>
@@ -555,6 +535,18 @@
 
         // เรียกใช้งานเมื่อโหลดหน้า
         window.addEventListener('DOMContentLoaded', initHomePage);
+
+        // Mobile Menu Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        if(navToggle) {
+            navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+        }
+
+        // Page Fade-in
+        window.addEventListener('load', () => {
+            document.getElementById('page-loader').style.opacity = '0';
+        });
     </script>
 
 </body>

@@ -897,3 +897,40 @@ audio {
     transform: translateY(0);
     transition-delay: 0.1s;
 }
+
+/* --- GLASS FORM STYLES --- */
+.glass-input-group {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.glass-input-group label {
+    display: block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--red);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.glass-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    outline: none;
+}
+
+.glass-input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--red);
+    box-shadow: 0 0 20px var(--red-glow), inset 0 0 10px rgba(255,255,255,0.02);
+    transform: translateY(-2px);
+}

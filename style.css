@@ -1,15 +1,15 @@
 :root {
     --black: #0a0a0a;
     --deep: #111111;
-    --surface: rgba(24, 24, 24, 0.6); /* ปรับให้โปร่งใส */
-    --border: rgba(255, 255, 255, 0.1); /* ขอบกระจกบางๆ */
+    --surface: rgba(255, 255, 255, 0.03); /* ปรับให้ใสขึ้นมากเพื่อให้เห็นพื้นหลังชัดเจน */
+    --border: rgba(255, 255, 255, 0.08); /* ขอบเนียนบางสไตล์ iOS */
     --red: #e8000d;
     --red-dim: #9b0009;
     --red-glow: rgba(232, 0, 13, 0.25);
     --white: #ffffff;
     --grey: #b3b3b3;
     --dim: #535353;
-    --glass-blur: blur(12px) saturate(160%); /* เอฟเฟกต์เบลอกระจก */
+    --glass-blur: blur(25px) saturate(190%); /* เพิ่มความฟุ้งและความสดของสีพื้นหลัง */
 }
 
 * {
@@ -338,7 +338,7 @@ body::before {
     margin-top: 58px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    background: var(--border);
+    background: var(--surface);
     animation: fadeUp 0.7s 0.32s ease both;
 }
 
@@ -378,8 +378,8 @@ body::before {
     max-width: 540px;
     margin: 0 auto;
     padding: 24px;
-    background: rgba(20, 20, 20, 0.4);
-    backdrop-filter: var(--glass-blur);
+    background: var(--surface);
+    backdrop-filter: var(--glass-blur) !important;
     border: 1px solid var(--border);
     border-radius: 16px;
     text-align: center;

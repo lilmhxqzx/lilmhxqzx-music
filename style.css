@@ -574,7 +574,8 @@ audio {
     background: rgba(232, 0, 13, 0.08);
     border-left: 3px solid var(--red);
     border-radius: 6px;
-    text-align: left;
+    text-align: center; /* แก้ไขให้ตัวหนังสือตรงกึ่งกลาง */
+    margin-bottom: 20px;
 }
 
 .info p {

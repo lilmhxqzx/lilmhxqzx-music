@@ -186,7 +186,16 @@
         .term-btn:hover {
             text-shadow: 0 0 8px #e8000d;
             color: #fff;
+            background: rgba(232, 0, 13, 0.05);
         }
+        
+        /* Add a blinking cursor to Terminal Title */
+        .track-info-terminal h2::after {
+            content: '_';
+            animation: blink 1s infinite;
+            color: var(--red);
+        }
+        @keyframes blink { 50% { opacity: 0; } }
 
         #ascii-visualizer {
             color: #e8000d;

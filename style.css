@@ -449,8 +449,8 @@ body::before {
     max-width: 540px;
     margin: 0 auto;
     padding: 24px;
-    background: var(--surface);
-    backdrop-filter: var(--glass-blur) !important;
+    background: rgba(255, 255, 255, 0.015); /* ลดความเข้มของสีพื้นผิวลงเพื่อให้ใสขึ้น */
+    backdrop-filter: blur(15px) saturate(200%) !important; /* ลดความเบลอลงจาก 30px เพื่อให้เห็นพื้นหลังชัดขึ้น */
     border: 1px solid var(--border);
     border-radius: 16px;
     text-align: center;
@@ -527,8 +527,8 @@ body::before {
 .player-wrapper {
     padding: 16px;
     margin-bottom: 18px;
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.1); /* ปรับพื้นหลังส่วนควบคุมให้บางลง */
+    backdrop-filter: blur(2px);
     border: 1px solid var(--border);
     border-radius: 8px;
 }
@@ -571,7 +571,7 @@ audio {
 
 .info {
     padding: 14px 16px;
-    background: rgba(232, 0, 13, 0.08);
+    background: rgba(232, 0, 13, 0.04); /* ปรับความใสของแถบข้อมูลเพลง */
     border-left: 3px solid var(--red);
     border-radius: 6px;
     text-align: center; /* แก้ไขให้ตัวหนังสือตรงกึ่งกลาง */

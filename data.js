@@ -4,7 +4,7 @@ const trackList = [
         title: "No Exit.", 
         audioSrc: "exit.mp3", 
         coverSrc: "cover.jpg",
-        description: "Friend zone lines never meet, yet they move in the same direction.",
+        description: "No Exit lines never meet, yet they move in the same direction.",
         mode: "Heavy"
     },
      { 

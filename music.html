@@ -731,10 +731,11 @@
             const featured = filteredTracks[0];
             
             // Update Page Background based on Featured Track
-            const bgLayer = document.getElementById('music-bg-layer');
-            if (bgLayer && featured.coverSrc) {
-                bgLayer.style.backgroundImage = `url('${featured.coverSrc}')`;
-            }
+            // ปิดการทำงานส่วนนี้เพื่อให้พื้นหลังเป็นรูป music-bg.jpg ตามที่ตั้งค่าใน CSS
+            // const bgLayer = document.getElementById('music-bg-layer');
+            // if (bgLayer && featured.coverSrc) {
+            //     bgLayer.style.backgroundImage = `url('${featured.coverSrc}')`;
+            // }
 
             featuredRoot.innerHTML = `
                 <section class="featured-track" aria-label="Featured track">

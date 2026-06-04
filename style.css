@@ -758,7 +758,7 @@ audio {
     z-index: -10;
     background-image: url('music-bg.png'); /* แก้ไขนามสกุลไฟล์ให้ตรงกับ music-bg.png */
     background-image: url('music-bg2.png'); /* เปลี่ยนเป็นรูป music-bg2.png */
-    background-image: url('music-bg3.jpg'); /* เปลี่ยนเป็นรูป music-bg3.png */
+    background-image: url('music-bg4.png'); /* เปลี่ยนเป็นรูป music-bg3.png */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

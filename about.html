@@ -77,8 +77,8 @@
     <script>
         // Intersection Observer for Scroll Reveal
         const observerOptions = {
-            threshold: 0.15, // เริ่มทำงานเมื่อองค์ประกอบปรากฏในจอ 15%
-            rootMargin: "0px 0px -50px 0px"
+            threshold: 0.1, // ปรับให้ทำงานเร็วขึ้นบนมือถือ (10%)
+            rootMargin: "0px 0px -20px 0px" // ปรับ margin ให้แคบลงเพื่อให้ Trigger ง่ายขึ้น
         };
 
         const observer = new IntersectionObserver((entries) => {

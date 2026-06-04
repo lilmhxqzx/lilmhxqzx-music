@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="page-loader"></div>
     <nav class="navbar">
         <a href="index.html" class="logo">LILMHXQZX</a>
-        <ul>
+        <button class="nav-toggle" id="nav-toggle">☰</button>
+        <ul id="nav-menu">
             <li><a href="index.html">HOME</a></li>
             <li><a href="music.html">MUSIC</a></li>
             <li><a href="about.html" class="active">ABOUT</a></li>
@@ -90,6 +92,18 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Mobile Menu Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        if(navToggle) {
+            navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+        }
+
+        // Page Fade-in
+        window.addEventListener('load', () => {
+            document.getElementById('page-loader').style.opacity = '0';
+        });
     </script>
 </body>
 </html>

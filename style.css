@@ -308,6 +308,7 @@ body::before {
 
 .hero-copy {
     width: 100%;
+    text-align: left;
 }
 
 .eyebrow {
@@ -327,7 +328,7 @@ body::before {
 .home h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(80px, 16vw, 200px);
-    line-height: 0.88;
+    line-height: 0.9;
     letter-spacing: 7px;
     margin-bottom: 24px;
     background: linear-gradient(to bottom, #fff 30%, rgba(255,255,255,0.5) 100%);
@@ -400,8 +401,8 @@ body::before {
 .hero-meta {
     width: min(100%, 860px);
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
     margin-top: 40px;
     animation: fadeUp 0.7s 0.32s ease both;
 }
@@ -657,7 +658,15 @@ audio {
 
     .home {
         min-height: auto;
-        padding: 72px 20px 34px;
+        padding: 100px 20px 60px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-content-glass {
+        padding: 30px 20px;
+        border-radius: 20px;
+        width: 100%;
     }
 
     .home::before {
@@ -665,10 +674,27 @@ audio {
             linear-gradient(0deg, rgba(10, 10, 10, 0.98) 0%, rgba(10, 10, 10, 0.64) 52%, rgba(10, 10, 10, 0.92) 100%),
             url('cover.jpg') center top / cover no-repeat;
     }
+    
+    .hero-copy {
+        text-align: center;
+    }
+
+    .home p {
+        margin: 0 auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
 
     .hero-meta {
-        grid-template-columns: 1fr;
-        margin-top: 38px;
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 30px;
+        gap: 10px;
+    }
+    
+    .hero-meta div {
+        padding: 15px;
     }
 
     .music-player-section {

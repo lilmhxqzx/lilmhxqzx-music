@@ -1,4 +1,20 @@
 const trackList = [
+      { 
+        id: "xTHAxGht13I", 
+        title: "No Exit.", 
+        audioSrc: "zone.mp3", 
+        coverSrc: "cover.jpg.jpg",
+        description: "Friend zone lines never meet, yet they move in the same direction.",
+        mode: "SYNTHWAVE"
+    },
+     { 
+        id: "7WqxyPDlSIk", 
+        title: "Strory.", 
+        audioSrc: "zone.mp3", 
+        coverSrc: "cover.jpg.jpg",
+        description: "Friend zone lines never meet, yet they move in the same direction.",
+        mode: "SYNTHWAVE"
+    },
             { 
         id: "yx-StsAAx-4", 
         title: "Friend zone.", 

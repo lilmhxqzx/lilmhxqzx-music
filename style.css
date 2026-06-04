@@ -1,14 +1,15 @@
 :root {
     --black: #0a0a0a;
     --deep: #111111;
-    --surface: #181818;
-    --border: #2a2a2a;
+    --surface: rgba(24, 24, 24, 0.6); /* ปรับให้โปร่งใส */
+    --border: rgba(255, 255, 255, 0.1); /* ขอบกระจกบางๆ */
     --red: #e8000d;
     --red-dim: #9b0009;
     --red-glow: rgba(232, 0, 13, 0.25);
     --white: #ffffff;
     --grey: #b3b3b3;
     --dim: #535353;
+    --glass-blur: blur(12px) saturate(160%); /* เอฟเฟกต์เบลอกระจก */
 }
 
 * {
@@ -62,8 +63,8 @@ body::before {
     justify-content: space-between;
     padding: 0 40px;
     height: 64px;
-    background: rgba(10, 10, 10, 0.92);
-    backdrop-filter: blur(20px);
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--border);
 }
 
@@ -335,15 +336,20 @@ body::before {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1px;
     margin-top: 58px;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     background: var(--border);
     animation: fadeUp 0.7s 0.32s ease both;
 }
 
 .hero-meta div {
     padding: 16px 18px;
-    background: rgba(17, 17, 17, 0.9);
+    background: rgba(17, 17, 17, 0.4);
+    backdrop-filter: var(--glass-blur);
 }
+
+.hero-meta div:first-child { border-radius: 12px 0 0 12px; }
+.hero-meta div:last-child { border-radius: 0 12px 12px 0; }
 
 .hero-meta span {
     display: block;
@@ -372,9 +378,10 @@ body::before {
     max-width: 540px;
     margin: 0 auto;
     padding: 24px;
-    background: var(--surface);
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 16px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -449,7 +456,8 @@ body::before {
 .player-wrapper {
     padding: 16px;
     margin-bottom: 18px;
-    background: var(--deep);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
     border: 1px solid var(--border);
     border-radius: 8px;
 }
@@ -596,6 +604,19 @@ audio {
     .home h1 {
         letter-spacing: 3px;
     }
+}
+
+/* Glass override for specialized layouts */
+.featured-track, .card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.07) !important;
+    border-color: rgba(232, 0, 13, 0.4) !important;
 }
 
 /* Dynamic Background for Music Page */

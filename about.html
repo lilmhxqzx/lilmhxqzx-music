@@ -20,7 +20,7 @@
 
     <main class="about-magazine">
         <!-- Hero Section -->
-        <section class="mag-hero-text">
+        <section class="mag-hero-text reveal-on-scroll">
             <div style="position: relative;">
                 <span class="mag-vertical-label">THE MANIFESTO</span>
                 <h1 class="glitch" data-text="RAW NOISE">RAW<br>NOISE</h1>
@@ -29,7 +29,7 @@
         </section>
 
         <!-- Main Image -->
-        <div class="mag-main-image card">
+        <div class="mag-main-image card reveal-on-scroll">
             <img src="cover.jpg" alt="Lilmhxqzx Artist" style="width: 100%; height: 100%; object-fit: cover;">
             <div style="position: absolute; bottom: 20px; right: 20px; font-family: 'Share Tech Mono'; font-size: 10px; color: var(--red);">
                 IMG_REF: 001_LMH_PRESS
@@ -37,7 +37,7 @@
         </div>
 
         <!-- Content Block -->
-        <article class="mag-content-block">
+        <article class="mag-content-block reveal-on-scroll">
             <h3 style="font-family: 'Bebas Neue'; font-size: 32px; letter-spacing: 2px; margin-bottom: 20px;">BEYOND THE SOUND</h3>
             <p style="color: var(--grey); font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
                 LILMHXQZX คือโปรเจกต์ดนตรีที่เกิดจากการผสมผสานความเกรี้ยวกราดของ Nu-Metal ยุค 2000 เข้ากับซาวด์ดีไซน์แบบ Cyberpunk 
@@ -49,12 +49,12 @@
         </article>
 
         <!-- Big Quote -->
-        <blockquote class="mag-quote">
+        <blockquote class="mag-quote reveal-on-scroll">
             "I make noise for people who feel too much. Heavy songs, raw words, and every scar turned louder."
         </blockquote>
 
         <!-- Bottom Stats/Grid -->
-        <div class="mag-stats-grid">
+        <div class="mag-stats-grid reveal-on-scroll">
             <div class="card" style="padding: 20px; text-align: center;">
                 <h4 style="color: var(--red); font-family: 'Share Tech Mono';">GENRE</h4>
                 <p style="font-family: 'Bebas Neue'; font-size: 24px;">INDUSTRIAL NU-METAL</p>
@@ -73,5 +73,23 @@
             </div>
         </div>
     </main>
+
+    <script>
+        // Intersection Observer for Scroll Reveal
+        const observerOptions = {
+            threshold: 0.15, // เริ่มทำงานเมื่อองค์ประกอบปรากฏในจอ 15%
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

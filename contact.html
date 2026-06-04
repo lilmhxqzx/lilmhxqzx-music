@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* ลบสไตล์เก่าที่ซ้ำซ้อนออกเพื่อให้ใช้จาก style.css */
         /* Glitch Effect Styles */
         .glitch {
             position: relative;
@@ -47,46 +48,16 @@
         .contact-container {
             position: relative;
             z-index: 2;
-            padding: 3rem 2.5rem;
-            max-width: 900px;
+            padding: 60px 40px;
+            max-width: 1200px;
             margin: 0 auto;
-            min-height: calc(100vh - 80px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .contact-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            animation: fadeInDown 0.8s ease;
-        }
-
-        .contact-header h1 {
-            font-size: clamp(48px, 8vw, 100px);
-            font-weight: 900;
-            margin-bottom: 1rem;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-family: 'Bebas Neue', sans-serif;
-            line-height: 0.9;
-        }
-
-        .contact-header p {
-            color: #e8000d;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 600;
         }
 
         /* Contact Content Grid */
         .contact-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
         @keyframes fadeInDown {
@@ -102,13 +73,15 @@
 
         /* Contact Card */
         .contact-card {
-            background: linear-gradient(135deg, rgba(24, 24, 24, 1) 0%, rgba(24, 24, 24, 1) 100%);
-            border: 1px solid #2a2a2a;
-            border-radius: 10px;
+            background: var(--surface);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
             padding: 2rem;
-            text-align: center;
             transition: all 0.3s ease;
             animation: fadeIn 0.8s ease forwards;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
         }
 
         .contact-card:nth-child(1) { animation-delay: 0.1s; }
@@ -239,6 +212,18 @@
             }
         }
 
+        /* Grid Layout for Form + Links */
+        .contact-grid-system {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 968px) {
+            .contact-grid-system { grid-template-columns: 1fr; }
+        }
+
         /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -264,9 +249,13 @@
         .navbar {
             height: 64px;
             padding: 0 40px;
-            background: var(--surface);
+            background: rgba(10, 10, 10, 0.7);
             backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .navbar ul {
@@ -430,11 +419,13 @@
 </head>
 
 <body>
+    <div id="page-loader"></div>
 
     <!-- NAVBAR -->
     <nav class="navbar">
         <a href="index.html" class="logo">LILMHXQZX</a>
-        <ul>
+        <button class="nav-toggle" id="nav-toggle">☰</button>
+        <ul id="nav-menu">
             <li><a href="index.html">HOME</a></li>
             <li><a href="music.html">MUSIC</a></li>
             <li><a href="about.html">ABOUT</a></li>

@@ -3,7 +3,7 @@ const trackList = [
         id: "xTHAxGht13I", 
         title: "No Exit.", 
         audioSrc: "exit.mp3", 
-        coverSrc: "cover.jpg.jpg",
+        coverSrc: "cover.jpg",
         description: "Friend zone lines never meet, yet they move in the same direction.",
         mode: "Heavy"
     },

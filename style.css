@@ -752,7 +752,7 @@ audio {
     width: 100%;
     height: 100%;
     z-index: 0; /* ปรับให้อยู่ระนาบเดียวกับ body */
-    background-image: url('music-bg5.jpg'); /* แก้ไขเป็น .jpg ให้ตรงกับไฟล์จริง */
+    background-image: url('music-bg6.PNG'); /* แก้ไขเป็น .jpg ให้ตรงกับไฟล์จริง */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

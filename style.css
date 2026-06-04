@@ -76,6 +76,9 @@ body::before {
     position: fixed;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-image: 
+        radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 9999;
     opacity: 0.4;
@@ -760,11 +763,19 @@ audio {
     background-image: url('music-bg2.png'); /* เปลี่ยนเป็นรูป music-bg2.png */
     background-image: url('music-bg3.png'); /* เปลี่ยนเป็นรูป music-bg3.png */
     background-image: url('music-bg5.png'); /* เปลี่ยนเป็นรูป music-bg5.png */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* ขยับขึ้นมาให้อยู่เหนือพื้นหลังของ body แต่ยังอยู่หลังเนื้อหา */
+    background-color: var(--black); /* ใช้เป็นสีพื้นฐานกรณีรูปไม่โหลด */
+    background-image: url('music-bg5.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transition: background-image 0.8s ease-in-out;
     filter: brightness(0.2) blur(2px);
+    -webkit-filter: brightness(0.2) blur(2px); /* เพื่อความเข้ากันได้บน iOS Safari */
 }
 
 /* --- MAGAZINE LAYOUT FOR ABOUT PAGE --- */

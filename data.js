@@ -5,7 +5,7 @@ const trackList = [
         audioSrc: "exit.mp3", 
         coverSrc: "cover.jpg.jpg",
         description: "Friend zone lines never meet, yet they move in the same direction.",
-        mode: "SYNTHWAVE"
+        mode: "Heavy"
     },
      { 
         id: "7WqxyPDlSIk", 

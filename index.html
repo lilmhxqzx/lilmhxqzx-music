@@ -60,44 +60,37 @@
 
     <!-- Music Player Section -->
     <div class="music-player-section">
-        <div class="music-player-container terminal-style">
-            <div class="terminal-header">
-                <span>[ AUDIO_STREAM_INIT ]</span>
-                <span>REF_0X922_LMH</span>
+        <div class="music-player-container">
+            <div class="badge">LATEST RELEASE</div>
+            
+            <div class="album-cover-wrapper">
+                <img id="albumCover" src="cover.jpg" alt="Album Cover" class="album-cover">
             </div>
             
-            <div class="terminal-body">
-                <div class="terminal-monitor">
-                    <div class="album-cover-wrapper terminal-frame">
-                        <img id="albumCover" src="cover.jpg" alt="Album Cover" class="album-cover">
-                    </div>
-                    <div class="track-info-terminal">
-                        <span class="status-line">> STATUS: DEPLOYED_LATEST</span>
-                        <div style="display: flex; align-items: center;">
-                            <h2 id="latest-title">LOAD_ERROR</h2>
-                            <span id="ascii-visualizer"></span>
-                        </div>
-                        <div id="latest-desc" style="font-size: 12px; color: #666; line-height: 1.4;">...</div>
-                    </div>
-                </div>
+            <h2 id="latest-title">LOAD_ERROR</h2>
+            <div class="subtitle" id="player-status">READY</div>
+            
+            <div id="latest-desc" class="info">
+                <p>Loading track metadata...</p>
+            </div>
 
-                <div class="terminal-progress-area">
-                    <div class="progress-label">
-                        <span id="player-status">READY</span>
-                        <span id="time-display">00:00 / 00:00</span>
-                    </div>
-                    <div class="progress-bar-bg">
-                        <div id="progress-fill" class="progress-bar-fill"></div>
-                    </div>
+            <div class="player-wrapper">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-family: 'Share Tech Mono'; font-size: 11px; color: var(--grey);">
+                    <span id="time-display">00:00 / 00:00</span>
+                    <span id="ascii-visualizer" style="color: var(--red);"></span>
+                </div>
+                
+                <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-bottom: 20px; overflow: hidden;">
+                    <div id="progress-fill" style="height: 100%; width: 0%; background: var(--red); box-shadow: 0 0 10px var(--red); transition: width 0.1s linear;"></div>
                 </div>
 
                 <audio id="main-audio">
                     <source id="audio-source" src="" type="audio/mpeg">
                 </audio>
 
-                <div class="terminal-actions">
-                    <button class="term-btn" onclick="togglePlay()" id="play-btn"><span>[</span> PLAY <span>]</span></button>
-                    <button class="term-btn" onclick="resetAudio()" id="reset-btn"><span>[</span> RESET <span>]</span></button>
+                <div class="controls">
+                    <button class="primary-action" onclick="togglePlay()" id="play-btn">PLAY</button>
+                    <button class="secondary-action" onclick="resetAudio()" id="reset-btn">RESET</button>
                 </div>
             </div>
         </div>
@@ -245,12 +238,12 @@
 
             if (mainAudio.paused) {
                 mainAudio.play();
-                playBtn.innerHTML = "<span>[</span> PAUSE <span>]</span>";
+                playBtn.textContent = "PAUSE";
                 setStatusText("STREAMING...");
                 startVisualizer();
             } else {
                 mainAudio.pause();
-                playBtn.innerHTML = "<span>[</span> PLAY <span>]</span>";
+                playBtn.textContent = "PLAY";
                 setStatusText("PAUSED");
                 clearInterval(visualizerInterval);
                 document.getElementById('ascii-visualizer').textContent = "";
@@ -260,7 +253,7 @@
         function resetAudio() {
             mainAudio.pause();
             mainAudio.currentTime = 0;
-            playBtn.innerHTML = "<span>[</span> PLAY <span>]</span>";
+            playBtn.textContent = "PLAY";
             setStatusText("READY");
             clearInterval(visualizerInterval);
             document.getElementById('ascii-visualizer').textContent = "";
@@ -282,7 +275,7 @@
         });
 
         mainAudio.addEventListener('ended', () => {
-            playBtn.innerHTML = "<span>[</span> PLAY <span>]</span>";
+            playBtn.textContent = "PLAY";
             setStatusText("COMPLETED");
             clearInterval(visualizerInterval);
             document.getElementById('ascii-visualizer').textContent = "";

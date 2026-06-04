@@ -639,7 +639,7 @@ audio {
     position: fixed;
     inset: 0;
     z-index: -10;
-    background-image: url('music-bg.jpg'); /* กำหนดรูปพื้นหลังหลัก */
+    background-image: url('music-bg.png'); /* แก้ไขนามสกุลไฟล์ให้ตรงกับ music-bg.png */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

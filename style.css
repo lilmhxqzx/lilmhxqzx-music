@@ -138,18 +138,22 @@ body::before {
     20% {
         transform: translate(-2px, 2px);
         text-shadow: 2px 0 var(--red), -2px 0 #0ff;
+        text-shadow: 2px 0 var(--red), -2px 0 #000;
     }
     40% {
         transform: translate(-2px, -2px);
         text-shadow: 2px 0 var(--red), -2px 0 #0ff;
+        text-shadow: 2px 0 var(--red), -2px 0 #000;
     }
     60% {
         transform: translate(2px, 2px);
         text-shadow: -2px 0 var(--red), 2px 0 #0ff;
+        text-shadow: -2px 0 var(--red), 2px 0 #000;
     }
     80% {
         transform: translate(2px, -2px);
         text-shadow: -2px 0 var(--red), 2px 0 #0ff;
+        text-shadow: -2px 0 var(--red), 2px 0 #000;
     }
     100% {
         transform: translate(0);
@@ -854,11 +858,15 @@ audio {
 .glitch::before {
     left: 2px;
     text-shadow: -2px 0 #ff00c1;
+    color: var(--red);
+    text-shadow: -2px 0 var(--red);
     animation: glitch-anim-1 2s infinite linear alternate-reverse;
 }
 .glitch::after {
     left: -2px;
     text-shadow: -2px 0 #00fff9;
+    color: #000;
+    text-shadow: 2px 0 #000;
     animation: glitch-anim-2 3s infinite linear alternate-reverse;
 }
 @keyframes glitch-anim-1 {

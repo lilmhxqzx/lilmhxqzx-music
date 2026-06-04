@@ -903,6 +903,9 @@
             if(navToggle) {
                 navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
             }
+            
+            // ปิด Loader ทันทีถ้าผ่านไป 2 วินาทีแล้วยังไม่หายไป (Safety Net)
+            setTimeout(() => { document.getElementById('page-loader').style.opacity = '0'; }, 2000);
         });
 
         // Page Fade-in

@@ -759,12 +759,12 @@ audio {
     background-image: url('music-bg.png'); /* แก้ไขนามสกุลไฟล์ให้ตรงกับ music-bg.png */
     background-image: url('music-bg2.png'); /* เปลี่ยนเป็นรูป music-bg2.png */
     background-image: url('music-bg3.png'); /* เปลี่ยนเป็นรูป music-bg3.png */
-    background-image: url('music-bg5.jpg'); /* เปลี่ยนเป็นรูป music-bg5.png */
+    background-image: url('music-bg5.png'); /* เปลี่ยนเป็นรูป music-bg5.png */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transition: background-image 0.8s ease-in-out;
-    filter: brightness(0.4) blur(2px);
+    filter: brightness(0.2) blur(2px);
 }
 
 /* --- MAGAZINE LAYOUT FOR ABOUT PAGE --- */

@@ -1,7 +1,7 @@
 const trackList = [
       { 
         id: "3_-XkJDL9tU", 
-        title: "The same road.", 
+        title: "The same road.",  
         audioSrc: "exit.mp3", 
         coverSrc: "cover.jpg",
         description: "The same road lines never meet, yet they move in the same direction.",

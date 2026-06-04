@@ -529,12 +529,15 @@
 
 <body>
 
+    <div id="page-loader"></div>
+
     <!-- Dynamic Background Layer -->
     <div id="music-bg-layer" class="music-page-bg-overlay"></div>
 
     <nav class="navbar">
         <a href="index.html" class="logo">LILMHXQZX</a>
-        <ul>
+        <button class="nav-toggle" id="nav-toggle">☰</button>
+        <ul id="nav-menu">
             <li><a href="index.html">HOME</a></li>
             <li><a href="music.html" class="active">MUSIC</a></li>
             <li><a href="about.html">ABOUT</a></li>
@@ -893,6 +896,18 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderMusic(1);
             loadStats();
+
+            // Mobile Menu Toggle
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            if(navToggle) {
+                navToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+            }
+        });
+
+        // Page Fade-in
+        window.addEventListener('load', () => {
+            document.getElementById('page-loader').style.opacity = '0';
         });
     </script>
 

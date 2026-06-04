@@ -216,7 +216,7 @@ body::before {
     background:
         linear-gradient(90deg, rgba(10, 10, 10, 0.98) 0%, rgba(10, 10, 10, 0.78) 45%, rgba(10, 10, 10, 0.3) 100%),
         linear-gradient(0deg, rgba(10, 10, 10, 0.98) 0%, rgba(10, 10, 10, 0.35) 42%, rgba(10, 10, 10, 0.7) 100%),
-        url('cover.jpg.jpg') right center / min(58vw, 760px) auto no-repeat;
+        url('cover.jpg') right center / min(58vw, 760px) auto no-repeat;
     z-index: -2;
 }
 
@@ -570,7 +570,7 @@ audio {
     .home::before {
         background:
             linear-gradient(0deg, rgba(10, 10, 10, 0.98) 0%, rgba(10, 10, 10, 0.64) 52%, rgba(10, 10, 10, 0.92) 100%),
-            url('cover.jpg.jpg') center top / cover no-repeat;
+            url('cover.jpg') center top / cover no-repeat;
     }
 
     .hero-meta {
@@ -609,9 +609,13 @@ audio {
 /* Glass override for specialized layouts */
 .featured-track, .card {
     background: rgba(255, 255, 255, 0.03) !important;
+    -webkit-backdrop-filter: var(--glass-blur); /* เพิ่ม Support สำหรับ Safari/iOS */
     backdrop-filter: var(--glass-blur);
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* แสงสะท้อนที่ขอบใน */
 }
 
 .card:hover {
@@ -624,7 +628,7 @@ audio {
     position: fixed;
     inset: 0;
     z-index: -10;
-    background-image: url('music-bg.png'); /* กำหนดรูปพื้นหลังหลัก */
+    background-image: url('music-bg.jpg'); /* กำหนดรูปพื้นหลังหลัก */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

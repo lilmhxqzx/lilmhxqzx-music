@@ -7,6 +7,7 @@
     <title>Lilmhxqzx Music - MUSIC</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
     <style>
         .page-header::after {
             content: 'SOUNDS';
@@ -619,6 +620,7 @@
         const itemsPerPage = 10;
         let currentMode = 'ALL';
         let filteredTracks = [...trackList]; // เก็บรายการเพลงที่ผ่านการกรองแล้ว
+        let ytPlayer; // เก็บอินสแตนซ์ของ YouTube Player
 
         let audioCtx;
         function playStaticPop() {
@@ -743,6 +745,20 @@
 
             // 1. Render Featured Track (เพลงแรกจากรายการที่กรองแล้ว)
             const featured = filteredTracks[0];
+
+            // Generate Up Next Queue (แสดง 3 เพลงถัดไปในคิว)
+            const upNextTracks = filteredTracks.slice(1, 4);
+            const queueHtml = upNextTracks.length > 0 ? `
+                <div class="featured-queue" style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px; margin-bottom: 5px;">
+                    <div class="section-label" style="margin-bottom: 10px; font-size: 10px; opacity: 0.5;">UP NEXT / SIGNAL QUEUE</div>
+                    ${upNextTracks.map((t, i) => `
+                        <div style="display: flex; gap: 10px; margin-bottom: 8px; font-family: 'Share Tech Mono'; font-size: 11px; align-items: center;">
+                            <span style="color: var(--red);">${(i + 2).toString().padStart(2, '0')}</span>
+                            <span style="color: var(--grey); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">${t.title}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            ` : '';
             
             // Update Page Background based on Featured Track
             // ปิดการทำงานส่วนนี้เพื่อให้พื้นหลังเป็นรูป music-bg.jpg ตามที่ตั้งค่าใน CSS
@@ -754,7 +770,8 @@
             featuredRoot.innerHTML = `
                 <section class="featured-track" aria-label="Featured track">
                     <div class="featured-video">
-                        <iframe src="https://www.youtube.com/embed/${featured.id}" 
+                        <iframe id="main-featured-video"
+                                src="https://www.youtube.com/embed/${featured.id}?autoplay=1&mute=1&enablejsapi=1" 
                                 title="YouTube video player" frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen></iframe>
@@ -765,6 +782,7 @@
                             <h2>${featured.title}</h2>
                             <p>${featured.description || 'Check out my newest sound.'}</p>
                             <button class="share-btn" style="margin-top: 15px; align-self: flex-start;" onclick="shareTrack('${featured.title.replace(/'/g, "\\'")}', '${featured.id}')">SHARE TRACK</button>
+                            ${queueHtml}
                         </div>
                         <div class="featured-stats">
                             <div>
@@ -854,6 +872,34 @@
                     paginationControls.appendChild(nextButton);
                 }
             }
+
+            // เชื่อมต่อ Event ของ YouTube Player
+            attachPlayerEvents();
+        }
+
+        // ฟังก์ชันจัดการเมื่อ API ของ YouTube พร้อมทำงาน
+        function onYouTubeIframeAPIReady() {
+            attachPlayerEvents();
+        }
+
+        function attachPlayerEvents() {
+            // ตรวจสอบว่ามี IFrame และ API พร้อมหรือไม่
+            if (typeof YT === 'undefined' || !YT.Player || !document.getElementById('main-featured-video')) return;
+
+            if (ytPlayer && ytPlayer.destroy) ytPlayer.destroy();
+
+            ytPlayer = new YT.Player('main-featured-video', {
+                events: {
+                    'onStateChange': (event) => {
+                        // เมื่อวิดีโอเล่นจบ (State 0 คือ ENDED)
+                        if (event.data === YT.PlayerState.ENDED) {
+                            const finishedTrack = filteredTracks.shift(); // ดึงเพลงปัจจุบันออก
+                            filteredTracks.push(finishedTrack); // เอาไปต่อท้ายรายการ
+                            renderMusic(1); // สั่ง Render ใหม่ เพลงถัดไปจะขึ้นเป็น Featured แทน
+                        }
+                    }
+                }
+            });
         }
 
         // ระบบการค้นหา

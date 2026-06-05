@@ -1,5 +1,14 @@
 const trackList = [
       { 
+        id: "Nx_uEgdOHLA", 
+        title: "Scar.", 
+        audioSrc: "exit.mp3", 
+        coverSrc: "cover.jpg",
+        description: "Scar lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
+
+      { 
         id: "3_-XkJDL9tU", 
         title: "The same road.",  
         audioSrc: "exit.mp3", 

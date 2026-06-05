@@ -558,7 +558,7 @@
     </nav>
 
     <div class="page-header">
-        <h1 class="glitch" data-text="MUSIC" style="text-shadow: 0 0 30px var(--red-glow);">NOISE ARCHIVE</h1>
+        <h1 class="glitch" data-text="MUSIC" style="text-shadow: 0 0 30px var(--red-glow);">MUSIC</h1>
         <p class="subtitle">HEAVY TRACKS BELOW</p>
         <div class="track-count">TRACKS <span id="total-tracks">0</span></div>
         <div class="search-container">
@@ -771,7 +771,7 @@
                 <section class="featured-track" aria-label="Featured track">
                     <div class="featured-video">
                         <iframe id="main-featured-video"
-                                src="https://www.youtube.com/embed/${featured.id}?autoplay=1&mute=1&enablejsapi=1" 
+                                src="https://www.youtube.com/embed/${featured.id}?autoplay=1&enablejsapi=1" 
                                 title="YouTube video player" frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 allowfullscreen></iframe>
@@ -781,7 +781,10 @@
                             <div class="featured-kicker">LATEST RELEASE</div>
                             <h2>${featured.title}</h2>
                             <p>${featured.description || 'Check out my newest sound.'}</p>
-                            <button class="share-btn" style="margin-top: 15px; align-self: flex-start;" onclick="shareTrack('${featured.title.replace(/'/g, "\\'")}', '${featured.id}')">SHARE TRACK</button>
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <button class="share-btn" onclick="shareTrack('${featured.title.replace(/'/g, "\\'")}', '${featured.id}')">SHARE TRACK</button>
+                                <button class="share-btn" onclick="skipTrack()" style="border-color: var(--red); color: var(--white); background: rgba(232, 0, 13, 0.1);">SKIP ➔</button>
+                            </div>
                             ${queueHtml}
                         </div>
                         <div class="featured-stats">
@@ -893,13 +896,19 @@
                     'onStateChange': (event) => {
                         // เมื่อวิดีโอเล่นจบ (State 0 คือ ENDED)
                         if (event.data === YT.PlayerState.ENDED) {
-                            const finishedTrack = filteredTracks.shift(); // ดึงเพลงปัจจุบันออก
-                            filteredTracks.push(finishedTrack); // เอาไปต่อท้ายรายการ
-                            renderMusic(1); // สั่ง Render ใหม่ เพลงถัดไปจะขึ้นเป็น Featured แทน
+                            skipTrack();
                         }
                     }
                 }
             });
+        }
+
+        function skipTrack() {
+            if (filteredTracks.length > 1) {
+                const finishedTrack = filteredTracks.shift(); // ดึงเพลงปัจจุบันออก
+                filteredTracks.push(finishedTrack); // เอาไปต่อท้ายรายการ
+                renderMusic(1); // สั่ง Render ใหม่ เพลงถัดไปจะขึ้นเป็น Featured แทน
+            }
         }
 
         // ระบบการค้นหา

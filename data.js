@@ -2,8 +2,8 @@ const trackList = [
       { 
         id: "Nx_uEgdOHLA", 
         title: "Scar.", 
-        audioSrc: "exit.mp3", 
-        coverSrc: "cover.jpg",
+        audioSrc: "scar01.mp3", 
+        coverSrc: "cover01.jpg",
         description: "Scar lines never meet, yet they move in the same direction.",
         mode: "Heavy"
     },

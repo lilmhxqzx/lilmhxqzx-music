@@ -4,23 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lilmhxqzx Music - MY MUSIC</title>
+    <title>Lilmhxqzx Music - NOISE ARCHIVE</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         .page-header::after {
-            content: 'MUSIC';
+            content: 'SOUNDS';
             position: absolute;
-            right: -10px; top: 50%;
-            transform: translateY(-50%);
+            left: 50%; top: 55%;
+            transform: translate(-50%, -50%);
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(80px, 14vw, 200px);
+            font-size: clamp(120px, 25vw, 350px);
             color: transparent;
-            -webkit-text-stroke: 1px rgba(232,0,13,0.1);
+            -webkit-text-stroke: 1px rgba(232,0,13,0.05);
             pointer-events: none;
-            letter-spacing: 10px;
+            letter-spacing: 30px;
             line-height: 1;
             user-select: none;
+            z-index: -1;
         }
 
         /* Loading Spinner Styles */
@@ -481,6 +482,14 @@
         }
 
         /* Glitch Effect Styles */
+        .page-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 60px;
+        }
+
         .glitch {
             position: relative;
             display: inline-block;
@@ -490,25 +499,27 @@
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--deep);
+            background: transparent;
         }
         .glitch::before {
             left: 2px;
-            text-shadow: -2px 0 #ff00c1;
+            text-shadow: -3px 0 var(--red);
+            clip-path: inset(45% 0 1% 0);
             animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
         .glitch::after {
             left: -2px;
-            text-shadow: -2px 0 #00fff9;
+            text-shadow: 3px 0 #000;
+            clip-path: inset(10% 0 58% 0);
             animation: glitch-anim-2 3s infinite linear alternate-reverse;
         }
         @keyframes glitch-anim-1 {
-            0% { clip-path: inset(30% 0 10% 0); }
+            0% { clip-path: inset(80% 0 1% 0); }
             50% { clip-path: inset(10% 0 70% 0); }
-            100% { clip-path: inset(50% 0 30% 0); }
+            100% { clip-path: inset(40% 0 43% 0); }
         }
         @keyframes glitch-anim-2 {
-            0% { clip-path: inset(10% 0 50% 0); }
+            0% { clip-path: inset(1% 0 80% 0); }
             50% { clip-path: inset(70% 0 10% 0); }
             100% { clip-path: inset(20% 0 60% 0); }
         }
@@ -546,7 +557,7 @@
     </nav>
 
     <div class="page-header">
-        <h1 class="glitch" data-text="MY MUSIC">MY MUSIC</h1>
+        <h1 class="glitch" data-text="NOISE ARCHIVE" style="text-shadow: 0 0 30px var(--red-glow);">NOISE ARCHIVE</h1>
         <p class="subtitle">HEAVY TRACKS BELOW</p>
         <div class="track-count">TRACKS <span id="total-tracks">0</span></div>
         <div class="search-container">

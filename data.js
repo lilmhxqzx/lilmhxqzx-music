@@ -1,5 +1,13 @@
 const trackList = [
       { 
+        id: "-ne1ZMUH4z8", 
+        title: "Hide the love.", 
+        audioSrc: "hide.mp3", 
+        coverSrc: "cover02.PNG",
+        description: "Scar lines never meet, yet they move in the same direction.",
+        mode: "MELODIC"
+    },
+      { 
         id: "Nx_uEgdOHLA", 
         title: "Scar.", 
         audioSrc: "scar01.mp3", 

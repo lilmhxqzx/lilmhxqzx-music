@@ -1,5 +1,13 @@
 const trackList = [
       { 
+        id: "Psq8Lu8uFmo", 
+        title: "Venom.", 
+        audioSrc: "venom.mp3", 
+        coverSrc: "cover03.jpg",
+        description: "Venom lines never meet, yet they move in the same direction.",
+        mode: "Heavy"
+    },
+      { 
         id: "-ne1ZMUH4z8", 
         title: "Hide the love.", 
         audioSrc: "hide.mp3", 

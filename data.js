@@ -3,7 +3,7 @@ const trackList = [
         id: "Psq8Lu8uFmo", 
         title: "Venom.", 
         audioSrc: "venom.mp3", 
-        coverSrc: "cover03.jpg",
+        coverSrc: "cover03.PNG",
         description: "Venom lines never meet, yet they move in the same direction.",
         mode: "Heavy"
     },
